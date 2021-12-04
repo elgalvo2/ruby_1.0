@@ -1,0 +1,148 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-size: 15px;
+}
+
+#contenedor{
+    margin:0px auto;
+    width:95%;
+    display:block;
+    margin:25px;
+}
+
+#clearFix{
+    float:none;
+    clear: both;
+}
+
+/*header*/
+
+#header{
+    display: block;
+    width:100%;
+    border:1px solid black;
+    margin:0px auto;
+}
+
+#upper{
+    border:1px solid black;
+}
+
+#upper img{
+    float:left;
+    height: 75px;
+    width: 75px;
+    margin: 10px;
+    padding-left: 15px;
+}
+
+#upper p{
+    float:left;
+    width:80%;
+    text-align: start;
+    font-size:15px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-right:10px;
+}
+
+#content {
+    display: block;
+    margin:0px auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+#content p{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+
+
+/*Data*/
+
+#data{
+    margin:0px auto;
+    width: 99%;
+    border:1px solid black;
+}
+
+#data p{
+    text-align: center;
+    border-bottom: 1px solid black;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+.table_data{
+    width:100%;
+}
+
+
+.table_data td{
+    border:1px solid black;
+    font-size: 12px;
+}
+
+.table_data tr td:first-child,
+.table_data tr td:nth-child(3),
+.table_data tr td:nth-child(4){
+    font-size: 15px;
+    padding-left: 2px;
+    width:10%
+}
+
+.table_data tr td:nth-child(2){
+    font-size: 15px;
+    text-align: center;
+    width: 55%;
+}
+
+.order_table_data{
+    margin-top: 10px;
+    width: 100%;
+}
+.order_table_data tr:first-child td{
+    font-weight: bold;
+}
+
+.order_table_data tr td{
+    border:1px solid black;
+    font-size: 12px;
+    text-align:center;
+}
+
+.order_table_data tr td:first-child{
+    width:7%;
+}
+
+.order_table_data tr td:nth-child(3),
+.order_table_data tr td:nth-child(4){
+    width:15%;
+}
+
+.order_table_data tr td:nth-child(2){
+    word-wrap: break-word;
+}
+
+/*SIGNS*/
+
+.signs_table{
+    width: 100%;
+}
+
+.signs_table tr:first-child{
+    height: 70px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.signs_table tr td{
+    width:33%;
+    text-align:center;
+}

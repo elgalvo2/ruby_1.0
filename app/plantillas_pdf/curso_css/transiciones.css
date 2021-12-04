@@ -1,0 +1,55 @@
+h1{
+    color:green;
+}
+#boton{
+    display:block;
+    padding:20px;
+    background-color: purple;
+    color:white;
+    width:200px;
+    height: 78px;
+    text-align:center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 77px;
+    border: 5px solid green;
+    transition:border 500ms, background 3s, border-radius 5s;
+    
+}
+
+#boton:hover{
+    border-radius: 99px;
+    background:orangered;
+    border: 5px solid white;
+}
+
+#caja{
+    margin-top:50px;
+    width:250px;
+    height: 250px;
+    background:violet;
+    color:white;
+    border:5px solid black;
+    font-size: 20px;
+    line-height: 225px;
+    text-align: center;
+    animation-name:desplazamiento;
+    animation-duration: 6s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+}
+
+@keyframes desplazamiento{
+    0%{
+        margin-left:0px;
+
+    }
+    50%{
+        margin-left:900px;
+        background-color:brown;
+    }
+    100%{
+        margin-left:0px;
+
+    }  
+}

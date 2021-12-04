@@ -1,11 +1,13 @@
-# Build and Release Folders
+# Build and Release 
+
 bin-debug/
 bin-release/
 [Oo]bj/
 [Bb]in/
-
+node_modules/
 # Other files and folders
 .settings/
+
 
 # Executables
 *.swf

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pedido</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pedido.css">
+    </head>
+    <body>
+        <div id="contenedor">
+            <div id='header'>
+                <div id="upper">
+                    <img src="./images/imss.png" alt="ims_logo">
+                    <p>ABASTO INSTITUCIONAL</p>
+                    <div id="clearFix"></div>
+                </div>
+
+                <div id="content">
+                    <p>Orden Compra</p>
+                    <p>INTITUTO MEXICANO DEL SEGURO SOCIAL</p>
+                    <p>DELEGACIÓN ESTATAL SINALOA</p>
+                    <p>SUMINISTRO DE INSUMOS DE CONSERVACIÓN</p>
+                </div>
+            </div>
+            <div id='data'>
+                <p>PEDIDO</p>
+                <table class='table_data'>
+                    <tr>
+                        <td>FECHA: </td>
+                        <td id="fecha_in"></td>
+                        <td>O.C.</td>
+                        <td id='orden_compra'></td>
+                    </tr>
+                </table>
+                <p>UNIDAD COPRADORA</p>
+                <table class='table_data'>
+                    <tr>
+                        <td>NOMBRE:</td>
+                        <td id='unidad'></td>
+                        <td>TELEFONO:</td>
+                        <td id='tel_unidad'></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>FAX:</td>
+                        <td></td>
+                    </tr>
+                </table >
+                <p>PROVEEDOR</p>
+                <table class='table_data'>
+                    <tr>
+                        <td>NOMBRE:</td>
+                        <td id='razon_social'></td>
+                        <td>TELEFONO:</td>
+                        <td id='tel_proveedor'></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>FAX:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>REPRESENTANTE:</td>
+                        <td id='representante'></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table class='order_table_data'>
+                    <tr id='order_table_head'>
+                        <td>CLAVE</td>
+                        <td>DESCRIPCION</td>
+                        <td>CANTIDAD</td>
+                        <td>FECHA ENTREGA</td>
+                    </tr>
+                    <tr id="mark">
+                    </tr>
+                </table>
+            </div>
+            <div id='signs'>
+                <table class="signs_table">
+                    <tr>
+                        <td id='ing'>ing casillas</td>
+                        <td id='adm'>lic lizette</td>
+                        <td id='dir'>checo</td>
+                    </tr>
+                    <tr>
+                        <td>JEFE DE CONSERVACION unidad 2</td>
+                        <td>ADMINISTRADOR <span class='unidad'></span></td>
+                        <td>DIRECTOR <span class='unidad'></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+   
+    </body>
+</html>

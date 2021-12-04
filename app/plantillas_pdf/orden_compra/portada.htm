@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./portada.css">        
+    </head>
+    <body>
+        <div id='contenedor'>
+            <div id='encabezado'>
+                <div id='left_header'>
+                    <img src="./images/imss.png" alt="Imagen imss">
+                    <div>
+                        <h3>INSTITUTO MEXICANO DEL SEGURO SOCIAL</h3>
+                        <p>DELEGACION ESTATAL DE SINALOA</p>
+                        <p>JEFATURA DE SERVICIOS ADMINISTRATIVOS</p>
+                        <p>DEPARTAMENTO DE CONSERVACION Y SERVICIOS GENERALES</p>
+                    </div>
+                </div>
+                <div id='right_header'>
+                    <p>ORDEN DE COMPRA</p>
+                    <p id='orden_compra'>######</p>
+                </div>
+                <div class='clearFix'></div>
+            </div>
+            <div id='datos'>
+                <div id='upper_data'>
+                    <div id='left_data'>
+
+                        <p class='section_title'>Datos del proveedor o prestador de servicios</p>
+                        <p class='field'>Nombre o razon social:</p>
+                        <p class='entry_data' id='razon_social'>############</p>
+                        
+                        <p class='field'>No. De proveedor:</p>
+                        <p class='entry_data' id='no_proveedor'>#############</p>
+
+                        <p class='field'>Registro federal de causantes:</p>
+                        <p class='entry_data' id='rfc'>##############3</p>
+
+                        <p class='field'>Representante legal:</p>
+                        <p class='entry_data' id='rep_legal'>##################</p>
+
+                        <p class='field'>Domicilio y telefono:</p>
+                        <p class='entry_data' id='dom_tel'>##############3</p>
+
+                    </div>
+                    <div id='right_data'>
+                        <div id='aut'>
+                            <p>
+                                Aut
+                            </p>
+                            <span id="aut_num">############</span>
+                            <div class='clearFix'></div>
+                            
+                        </div>
+                        <div id='date_data'>
+
+                            <p class='field' id='fundamento'>Fundamento legal de la adjudicacion:</p>
+                            <p class='entry_data' id='fund_ad'>#################333</p>
+
+                            <p class='field'>Importe final con IVA:</p>
+                            <p class='entry_data' id='imp_final_iva'>$</p>
+
+                            <p class='field'>Fecha de inicio:</p>
+                            <p class='entry_data' id='fecha_in'>###############333##</p>
+
+                            <p class='field'>Fecha de termino:</p>
+                            <p class='entry_data' id='fecha_fin'>#################33##</p>
+
+                        </div>
+                    </div>
+                    <div class='clearFix'></div>
+                </div>
+                <div id='unit_data'>
+                    <p>Datos de la unidad y presupuesto</p>
+                    <table id='info_table'>
+                        <tr class='head'>
+                            <td>Referencia</td>
+                            <td>Codificacion</td>
+                            <td>Denominacion</td>
+                        </tr>
+                        <tr>
+                            <td>Circunscripcion</td>
+                            <td id='circuns_1'></td>
+                            <td id="circuns_2"></td>
+                        </tr>
+                        <tr>
+                            <td>Localidad</td>
+                            <td></td>
+                            <td id='local'></td>
+                        </tr>
+                        <tr>
+                            <td>Inmueble</td>
+                            <td></td>
+                            <td id='inmu'></td>
+                        </tr>
+                        <tr>
+                            <td>Domicilio</td>
+                            <td></td>
+                            <td id='dom'></td>
+                        </tr>
+                        <tr>
+                            <td>Unidad de informacion</td>
+                            <td id='ui'></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td>Centro de costos</td>
+                            <td id='cc'></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Partidad presupuestal</td>
+                            <td id='pp_1'></td>
+                            <td id='pp_2'></td>
+                        </tr>
+                        <tr>
+                            <td>Especialidad</td>
+                            <td id='esp_1'></td>
+                            <td id='esp_2'></td>
+                        </tr>
+                        <tr>
+                            <td>Subespecialidad</td>
+                            <td id='sub_1'></td>
+                            <td id='sub_2'></td>
+                        </tr>
+                        
+                    </table> 
+                    <div class='clearFix'></div>
+                </div>
+               
+            </div>
+            <div id='detalles'>
+                <table id='unit_table'>
+                    <tr class='head'>
+                        <td>Rel</td>
+                        <td>Cant.</td>
+                        <td>Unidad</td>
+                        <td>Descipcion</td>
+                        <td>P.U.</td>
+                        <td>Importe</td>
+                    </tr>
+                    
+                    <tr id='subtotal'> 
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Sub-total</td>
+                        <td id='cant_subtotal'></td>
+                    </tr>
+                    <tr id='iva'>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>IVA</td>
+                        <td id='cant_iva'></td>
+                    </tr>
+                    <tr id='total'>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td id='cant_total'></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="people">
+                <div id='upper_sign'>
+                    <div class='sign' id='jefe_con'>
+                        <p>Area solicitante (Jefatura de conservación)</p>
+                        <p id='ing'></p>
+                        
+                    </div>
+                    <div class='sign' id='director'>
+                        <p>Vo. Bo. (Director de la unidad)</p>
+                        <p id='dir'></p>
+                        
+                    </div>
+                    <div class='clearFix'></div>
+                    
+                    
+                </div>
+                <div id='lower_sign'>
+                    <div class='sign' id='admin'>
+                        <p>Autorización de la orden de servicio (Administrador de la unidad)</p>
+                        <p id='adm'></p>    
+                    </div>
+                    <div class='sign' id='opcional'>
+                        <p id='titulo_alt'></p>
+                        <p id='alt'></p>
+                    </div>
+                    <div class='clearFix'></div>
+                </div>
+                
+            </div>
+        
+            <div class='clearFix'></div>
+        </div>
+    </body>
+</html>

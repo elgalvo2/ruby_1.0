@@ -1,0 +1,238 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-size: 15px;
+}
+
+.clearFix{
+    float:none;
+    clear:both;
+}
+
+#contenedor{
+    margin:0px auto;
+    width: 95%;
+    display:block;
+
+    margin:25px;
+}
+
+/*Header*/
+#header{
+    display:block;
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;   
+}
+
+#header img{
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin: 5px;
+    margin-right: 10px;
+}
+
+#presen{
+    display:block;
+    text-align: start;
+    font-size:12px;
+    float: left;
+    line-height: 20px;
+    word-spacing: 5px;
+    margin-top: 5px !important;
+}
+#presen h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+/*data_table*/
+
+#data_table{
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;
+}
+
+
+#data_table p{
+    background-color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+
+#data_table table tr td:first-child{
+  
+    padding:2px;
+    border:1px solid black;
+    font-size:12px;
+}
+
+#data_table table tr td:nth-child(2){
+    width:65%;
+    text-align: center;
+    padding:2px;
+    border:1px solid black;
+    font-weight: bold;
+    font-size:10px;
+}
+
+#tipo_contr{
+    font-weight: bold;
+    line-height: 20px;
+}
+
+#objeto_contr{
+   font-size: 12px;
+   font-weight: bold;
+   word-wrap: break-word;
+   width:65%; 
+}
+
+/*bACKGROUND*/
+
+#background{
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;  
+}
+
+#background>p{
+    background-color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+
+#text_antecedente{
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+/*Considerations*/
+
+
+#considerations{
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;  
+}
+
+#considerations>p{
+    background-color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+
+#text_consideraciones{
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 15px;
+}
+/*Resolution*/
+
+#resolution{
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;  
+}
+
+#resolution>p{
+    background-color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+
+#text_resolution{
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.resolution_inner{
+    font-weight: bold;
+}
+
+/*Signs*/
+
+#signs{
+    display:block;
+    width:99%;
+    margin:0px auto;
+    padding:5px;
+    border:1px solid black;  
+}
+
+#tit{
+    background-color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid black; 
+    display:block;
+}
+
+#tit p{
+    width:50%;
+    float:left;
+    text-align:center;
+}
+
+#firmantes{
+    width:100%;
+    padding-top: 30px;
+    line-height: 45px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid black; 
+    display:block;
+}
+
+#firmantes p{
+    width:48%;
+    float:left;
+    text-align:center;
+    padding-left: 10px;
+
+}
+
+#firmantes p:first-child{
+    border-right: 2px solid black;
+  
+}
+
+#titulos{
+
+    padding-top: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid black; 
+    display:block;
+}
+
+#titulos p{
+    width:48%;
+    float:left;
+    text-align:center;
+    padding-left: 10px;
+
+}
+
+#titulos p:first-child{
+    border-right: 2px solid black;
+}

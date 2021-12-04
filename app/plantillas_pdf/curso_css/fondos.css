@@ -1,0 +1,32 @@
+body{
+    background-color:#ccc;
+    text-align: justify;
+    /*
+    background-image:url("./images/HDfondo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:100%*/
+    text-indent: 15px;
+    letter-spacing: 1px;
+}
+
+
+
+#caja{
+    background-image:url("./images/HDfondo.jpg");
+    border: 1px solid black;
+    padding: 20px;
+    background-color:brown;
+    color:brown;
+    font-family:"Open-Sans";
+    text-align: center;
+    line-height: 20px;
+    text-decoration:underline;
+
+}
+h2{
+    border:1px solid rgba(226, 221, 221, 1);
+    background-color:rgba(252, 243, 243, 0.413);
+    padding:10px;
+    color:black;
+}

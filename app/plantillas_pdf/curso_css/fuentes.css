@@ -1,0 +1,20 @@
+@font-face{
+    font-family:KakuFuenteCustom;
+    src:url('./fuentes/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Regular.ttf')
+}
+
+
+h1{
+  font-family: 'Times New Roman', Times, serif;  
+  font-size: 45px;
+  font-style:italic;
+}
+
+p{
+    font-family: 'kakuFuenteCustom', Courier, monospace;
+    font-size:medium;
+}
+
+.parrafo{
+    font-weight: bold;
+}
