@@ -30,7 +30,7 @@ async function purchase_order_pedido_to_pdf(page,unit,provider,order){
 
 
 async function purchase_order_fundamentos_to_pdf(page,unit,provider, order){
-    console.log('entra aqui 0')
+   
    
     await page.evaluate((unit, provider, order)=>{
 
@@ -64,7 +64,7 @@ async function purchase_order_fundamentos_to_pdf(page,unit,provider, order){
 
 async function purchase_order_portada_to_pdf(page,unit,provider, order){
 
-    console.log(order)
+
 
     await page.evaluate((unit, provider, order)=>{// talves el nombre de lor argumentos tiene que cooincidir con el de los heredados 
 
@@ -107,7 +107,6 @@ async function purchase_order_portada_to_pdf(page,unit,provider, order){
     
     
         order.articulos.map((el,index)=>{
-            console.log('se ejecuta hasta aqui')
             document.getElementById("subtotal").insertAdjacentHTML("beforebegin",
             `<tr><td>${index+1}</td><td>${el.cantidad}</td><td>${el.unidad}</td><td>${el.descripcion}</td><td>$${el.precio_unitario}</td><td>$${el.importe}</td></tr>`
             )

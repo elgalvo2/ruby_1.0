@@ -20,31 +20,30 @@ const create_orden_compra= async (req,res)=>{
             res.setHeader('Content-disposition','attachment; filename=orden_de_compra.pdf');
 
             function sendpdf(){
-                console.log('entro en el intervalo');
-                res.download('../back_end/app/services/orden_de_compra.pdf');
+                res.download('../ruby_1.0/app/services/orden_de_compra.pdf');
                 
             }
             setTimeout(sendpdf,3500,'funky')
 
-            fs.unlink('../back_end/app/services/portada.pdf',(err=>{
+            fs.unlink('../ruby_1.0/app/services/portada.pdf',(err=>{
                 if(err){console.log(err)
                     }else{
                         console.log("portada eliminada")
                     }
                 }));
-                fs.unlink('../back_end/app/services/fundamento.pdf',(err=>{
+                fs.unlink('../ruby_1.0/app/services/fundamento.pdf',(err=>{
                     if(err){console.log(err)
                     }else{
                         console.log("fundamento eliminada")
                     }
                 }));
-                fs.unlink('../back_end/app/services/pedido.pdf',(err=>{
+                fs.unlink('../ruby_1.0/app/services/pedido.pdf',(err=>{
                     if(err){console.log(err)
                     }else{
                         console.log("pedido eliminada")
                     }
                 }));
-                fs.unlink('../back_end/app/services/orden_de_compra.pdf',(err=>{
+                fs.unlink('../ruby_1.0/app/services/orden_de_compra.pdf',(err=>{
                     if(err){console.log(err)
                     }else{
                         console.log("orden compra eliminada")

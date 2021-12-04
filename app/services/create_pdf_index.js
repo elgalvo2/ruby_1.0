@@ -7,7 +7,7 @@ const {purchase_order_portada_to_pdf,purchase_order_fundamentos_to_pdf,purchase_
 
 async function order_data_topdf(unit_data, provider_data, order_data){
 
-    console.log("dirnameee",__dirname)
+    
     
     const browser = await puppeteer.launch();
 
