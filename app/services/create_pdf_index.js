@@ -8,7 +8,6 @@ const {purchase_order_portada_to_pdf,purchase_order_fundamentos_to_pdf,purchase_
 async function order_data_topdf(unit_data, provider_data, order_data){
 
     
-    
     const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
@@ -53,7 +52,7 @@ async function order_data_topdf(unit_data, provider_data, order_data){
         merger.add("app/services/portada.pdf");
         merger.add("app/services/fundamento.pdf");
         merger.add("app/services/pedido.pdf");
-        await merger.save("app/services/orden_de_compra.pdf")
+        merger.save("app/controllers/orden_de_compra.pdf")
     })();
     return {};
 

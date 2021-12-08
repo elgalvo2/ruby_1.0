@@ -5,9 +5,9 @@ async function purchase_order_pedido_to_pdf(page,unit,provider,order){
         document.getElementById('fecha_in').textContent=order.fecha_inicio;
         document.getElementById("orden_compra").textContent=order.orden_id;
         document.getElementById("unidad").textContent=unit.inmueble;
-        document.getElementById("tel_unidad").textContent=unit.telefono;
+        document.getElementById("tel_unidad").textContent=unit.telefono_inmu;
         document.getElementById("razon_social").textContent=provider.razon_social;
-        document.getElementById("tel_proveedor").textContent=provider.telefono;
+        document.getElementById("tel_proveedor").textContent=provider.telefono_prov;
         document.getElementById("representante").textContent=provider.rep_legal;
 
         order.articulos.map((art,index)=>{
@@ -30,7 +30,7 @@ async function purchase_order_pedido_to_pdf(page,unit,provider,order){
 
 
 async function purchase_order_fundamentos_to_pdf(page,unit,provider, order){
-   
+    console.log('entra aqui 0')
    
     await page.evaluate((unit, provider, order)=>{
 
@@ -39,7 +39,7 @@ async function purchase_order_fundamentos_to_pdf(page,unit,provider, order){
         document.getElementById('fecha_dic').textContent=order.fecha_inicio;
         document.getElementById("localidad").textContent=unit.localidad;
         document.getElementById('unidad').textContent=unit.inmueble;
-        document.getElementById('ubicacion').textContent=unit.domicilio;
+        document.getElementById('ubicacion').textContent=unit.domicilio_inmu;
         document.getElementById('objeto_contra').textContent=order.uso;
         document.getElementById("prestador_servicio").textContent=provider.razon_social;
         document.getElementById("rep_legal").textContent=provider.rep_legal;
@@ -64,7 +64,7 @@ async function purchase_order_fundamentos_to_pdf(page,unit,provider, order){
 
 async function purchase_order_portada_to_pdf(page,unit,provider, order){
 
-
+    console.log(provider)
 
     await page.evaluate((unit, provider, order)=>{// talves el nombre de lor argumentos tiene que cooincidir con el de los heredados 
 
@@ -75,13 +75,13 @@ async function purchase_order_portada_to_pdf(page,unit,provider, order){
         document.getElementById("no_proveedor").textContent=provider.no_proveedor;
         document.getElementById("rfc").textContent=provider.rfc;
         document.getElementById("rep_legal").textContent=provider.rep_legal;
-        document.getElementById("dom_tel").textContent=provider.domicilio+' '+provider.telefono;
+        document.getElementById("dom_tel").textContent=provider.domicilio_prov+' '+provider.telefono_prov;
     
         /*right Data*/
         document.getElementById("aut_num").textContent=order.autorizacion_id;
         document.getElementById("fund_ad").textContent=order.fundamento_adjudicacion;
         document.getElementById("imp_final_iva").textContent+=order.importe_iva;
-        document.getElementById("fecha_in").textContent=order.fecha_in;
+        document.getElementById("fecha_in").textContent=order.fecha_inicio;
         document.getElementById("fecha_fin").textContent=order.fecha_termino;
     
         /*unit data*/
@@ -90,7 +90,7 @@ async function purchase_order_portada_to_pdf(page,unit,provider, order){
     
         document.getElementById("local").textContent=unit.localidad;
         document.getElementById("inmu").textContent=unit.inmueble;
-        document.getElementById("dom").textContent=unit.domicilio;
+        document.getElementById("dom").textContent=unit.domicilio_inmu;
         document.getElementById("ui").textContent=unit.unidad_informacion;
         document.getElementById("cc").textContent= unit.centro_costos;
     
@@ -107,6 +107,7 @@ async function purchase_order_portada_to_pdf(page,unit,provider, order){
     
     
         order.articulos.map((el,index)=>{
+            console.log('se ejecuta hasta aqui')
             document.getElementById("subtotal").insertAdjacentHTML("beforebegin",
             `<tr><td>${index+1}</td><td>${el.cantidad}</td><td>${el.unidad}</td><td>${el.descripcion}</td><td>$${el.precio_unitario}</td><td>$${el.importe}</td></tr>`
             )
