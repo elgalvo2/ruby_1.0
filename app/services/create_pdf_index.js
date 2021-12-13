@@ -1,7 +1,15 @@
 const puppeteer = require('puppeteer');
 const PDFmerger = require('pdf-merger-js');
 
-const {purchase_order_portada_to_pdf,purchase_order_fundamentos_to_pdf,purchase_order_pedido_to_pdf}=require('./create_pdf.js');
+const {
+    purchase_order_portada_to_pdf,
+    purchase_order_fundamentos_to_pdf,
+    purchase_order_pedido_to_pdf,
+    service_order_portada_to_pdf,
+    service_order_desarrollo_to_pdf,
+    service_order_fundamento_to_pdf,
+    service_order_acta_entrega_to_pdf,
+    }=require('./create_pdf.js');
 
 
 

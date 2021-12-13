@@ -1,0 +1,306 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-size: 15px;
+}
+
+.clearFix{
+    float:none;
+    clear:both;
+}
+
+#contenedor{
+    display:block;
+    margin:0px auto;
+    width: 1000px;
+    height: 720px;;
+    display:block;
+    margin:25px;
+    
+}
+
+/*Header*/
+
+#header{
+    display:block;
+    width:100%;
+    height:12%;
+    
+
+}
+
+.left{
+    display:block;
+    float: left;
+    width:78%;
+    height: 100%;
+    border:1px solid black;
+}
+
+.right{
+    float:right;
+    display: block;
+    width:20%;
+    height: 100%;
+    border:1px solid black;
+
+}
+
+.left img{
+    float:left;
+    width: 75px;
+    height: 74px;
+    margin: 5px;
+    margin-right: 10px;
+    margin-left:10px;
+}
+
+#presen{
+    float:left;
+    width:80%;
+    height: 95%;
+    margin:5px ;
+}
+
+.right p{
+    text-align: center;
+    font: bold;
+    font-size: 22px;
+    margin: 0px auto;
+    margin-top: 10px;
+}
+
+
+/*info*/
+
+#info{
+    display:block;
+    width:100%;
+    height:20%;
+    
+    margin-top: 10px;
+}
+
+#info table{
+    width: 100%;
+    height: 100%;
+}
+
+#info td{
+    border: 1px solid black;
+}
+
+td{
+    text-align: center;
+    height: 20%;
+}
+
+#uso_{
+    font-weight: bold;
+}
+
+table tr:nth-child(3) td:nth-child(2){
+    width: 100px;
+}
+
+tr td:first-child{
+    width:20%
+}
+tr td:nth-child(2){
+    width: 40%;
+}
+tr:nth-child(2) td:nth-child(2){
+    word-wrap: break-word;
+    line-height: 18px;
+    width: 80%;
+    padding:2px;
+    font-size: 13px;
+    max-width: 400px;
+}
+
+#right_info p{
+    border:1px solid black;
+    font-size: 12px;
+}
+
+#right_info p:first-child{
+    margin-top: 3px;
+    height: 14%;
+    font-size: 16;
+    
+}
+
+#right_info p:nth-child(3){
+    margin-top: 0px;
+    height: 15%;
+    font-size: 16;
+}
+
+#info_right{
+    display: block;
+    width: 100%;
+}
+
+#info_right p{
+    float: left;
+    margin:3px;
+    margin-left: 5px;
+    width: 45%;
+    font-size: 17px;
+}
+
+#nom_unidad{
+    height: 30%;
+    height: 40%;
+    margin-top: 1px;
+    font-size: 18px !important;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px !important;
+    word-wrap: break-word;
+}
+
+/*detalles*/
+
+#detalles{
+    display:block;
+    width:100%;
+
+    
+}
+
+
+#detalles table tr:first-child,
+#detalles table tr:nth-child(2){
+    background-color: #ccc;
+    max-height: 20px;
+    height:15px;
+}
+
+#detalles table tr td:first-child,
+#detalles table tr td:nth-child(3),
+#detalles table tr:nth-child(2) td{
+    width:5%;
+}
+
+#detalles table .table_body td{
+    max-height:80px;
+    font-size:14px !important;
+    padding:1px;
+}
+
+
+
+#detalles table .inf{
+    max-height: 10px;
+    height:10%;
+}
+
+
+#detalles table td{
+    border:1px solid black;
+}
+
+#detalles table .inf td:first-child{
+    border:none;
+    height: none;
+}
+
+/*Firmas*/
+#firmas{
+    width:100%;
+    height:90px;
+    
+}
+
+.sign_card{
+    margin-top: 15px;
+    display: inline-block;
+    margin-left:58px;
+    text-align: center;
+    width: 25%;
+    max-width: 30%;
+}
+.sign_card p:last-child{
+    border:1px solid black;
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+#concepto{
+    float:left;
+    width:50%;
+}
+
+
+#concepto td{
+    border: 1px solid black;
+}
+
+#concepto tr:first-child{
+    background-color: #cccc;
+    height: 25px;
+}
+
+#concepto td:first-child,
+#concepto td:nth-child(3){
+    border: 1px solid black;
+    color:blue;
+    width:20px;
+}
+
+.concepto_deta{
+    font-size: 12px;
+    line-height: 14px;
+}
+
+
+
+#cant{
+    float:left;
+    width:10%;
+    border:1px solid black;
+}
+
+#cant td{
+    border:1px solid black;
+    text-align: center;
+}
+
+#cant tr{
+    background-color: #cccc;
+}
+
+#cant .objeto{
+    height:110px;
+    background-color: white;
+}
+
+
+
+#precio{
+    float:left;
+    width:13%;
+    border:1px solid black;
+}
+
+#precio td{
+    border:1px solid black;
+    text-align: center;
+}
+#precio tr{
+    background-color: #cccc;
+}
+#precio .objeto{
+    height: 110px;
+    background-color: white;
+}*/

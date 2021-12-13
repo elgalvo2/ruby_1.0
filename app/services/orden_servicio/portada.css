@@ -1,0 +1,331 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+
+
+#contenedor{
+    width: 95%;
+    margin:0px auto;
+    margin:25px;
+}
+
+/*Encabezado*/
+
+#encabezado{
+    display:block;
+    color:black;
+    font-size:15px;
+}
+
+#left_header{
+    float:left;
+    display:block;
+    width:73%;
+    border:1px solid black;
+    line-height: 20px;
+    font-size:12px;
+    font-weight: 400;
+    text-align:start;
+    padding:2px;
+    margin:2px;
+}
+
+#left_header div{
+    margin:5px;
+    float:left;
+}
+
+
+#left_header img{
+    margin:5px;
+    width:75px;
+    height:75px;
+    float:left;
+}
+
+#right_header{
+    float:right;
+    width:23%;
+    border:1px solid black;
+    line-height: 30px;
+    font-size:18px;
+    text-align:center;
+    padding:2px;
+    margin:2px;
+}
+
+.clearFix{
+    float:none;
+    clear:both;
+}
+
+
+
+/*Fin encabezado*/
+
+/*Datos*/
+
+#datos{
+    display:block;
+    color:black;
+    font-size:15;
+    margin-top:5px;
+}
+#upper_data{
+    display:block;
+ 
+
+}
+
+#left_data{
+    float:left;
+    display:block;
+    width:73%;
+    line-height: 20px;
+    font-size:10px;
+    font-weight: bold;
+    text-align:start;
+    padding:2px;
+    margin:2px;
+}
+
+#right_data{
+    float:right;
+    display:block;
+    width:23%;
+    line-height: 30px;
+    font-size:15px;
+    text-align:center;
+    padding:2px;
+    margin:2px;
+}
+
+.entry_data{
+    height: 15px;
+    background-color: rgba(201, 201, 201, 0.448);
+    font-size:12px;
+    text-align:center;
+    line-height: 15px;
+    border-bottom: 2px solid black;
+}
+
+.field{
+    height: 15px;
+    background-color: aliceblue;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: start;
+    font-weight: bold;
+
+}
+
+.section_title{
+    font-size: 15px;
+    height: 15px;
+    background-color: #cccccccc;
+    line-height: 17px;
+    font-weight: bold;
+    text-align:center;
+}
+
+#aut{
+    display:block;
+    background-color: #cccccccc;
+    padding-left:2px;
+    padding-top:5px;
+    padding-bottom:5px;
+    
+}
+
+#aut p{
+    float:left;
+    text-align: start;
+    font-weight: bold;
+    font-size:15px;
+    line-height:20px;
+}
+
+#aut span{
+    float:left;
+    margin-left:5px;
+    text-align:start;
+    font-weight:normal;
+    font-size:15px;
+    line-height:20px;
+}
+
+
+#fundamento{
+    height:32px !important;
+    line-height: 15px;
+    text-align: center;
+    word-spacing: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
+/*Fin datos*/
+
+/*Table de informacion de la unidad*/
+#unit_data{
+    display:block;
+    width: 100%;
+
+}
+
+#unit_data p{
+    /*background-color: rgb(184, 184, 184);*/
+    margin-top:1px;
+    padding-left:10px;
+    font-size:12px;
+}
+#info_table{
+    width:100%;
+
+}
+#info_table tr td{
+    border:1px solid black;
+    border-top:none;
+}
+
+#info_table .head td{
+    font-size: 12px;
+    font-weight:bold;
+    text-align: center !important;
+    border: 1px solid black;
+}
+#info_table tr{
+    height: 15px;
+}
+#info_table tr td:first-child{
+    font-size: 12px;
+    padding-left:2px;
+    font-weight: bold;
+    width:25%;
+}
+#info_table tr td:nth-child(2){
+    font-size: 12px;
+    width:10%; 
+    padding-left: 2px;
+    text-align: center;
+}
+#info_table tr td:nth-child(3){
+    font-size: 12px;
+    width:65%; 
+    padding-left: 2px;
+    text-align: center;
+}
+
+/*fin table de informacion de la unidad*/
+
+/*Datalles*/
+#detalles{
+    width: 100%;
+    max-height: 175px;
+    border: 1px solid rebeccapurple;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#detalles div:first-child p{
+    width: 100%-10px;
+    padding-left: 10px;
+    text-align: start;
+    background-color: #cccccccc;
+    font-weight: bold;
+    
+}
+#detalles div:nth-child(2) p{
+    width: 100%-30px;
+    height: 55px;
+    padding-left: 15px;
+    padding-right: 10px;
+    line-height: 25px;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    word-wrap: break-word;
+    border:1px solid black;
+}
+#detalles #detalles_importe{
+    width: 100%;
+    border:1px solid black;
+    border-top: none;
+
+}
+
+#detalles #detalles_importe p{
+    display: inline-block;
+    height: 35px;
+    width:15%;
+    max-width:15%;
+    line-height: 20px;
+    margin-left: 50px;
+    
+}
+
+#detalles #detalles_importe p:nth-child(2n+1){
+    text-align: center;
+    font-weight: bold;
+}
+
+/*Fin detalles*/
+
+/*People*/
+
+#people{
+    width: 100%;
+    display:block; 
+    margin-top: 5px;
+ 
+}
+
+#upper_sign{
+    display:block;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#lower_sign{
+    display:block;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid black;
+
+}
+#upper_sign div:first-child{
+    
+    width: 49%;
+    border-right: 2px solid black;
+}
+
+#lower_sign div:first-child{
+    
+    width: 49%;
+    border-right: 2px solid black;
+    margin-bottom: 10px;
+}
+
+
+.sign{
+    float:left;   
+    background-color: aliceblue;
+    display:block;
+    text-align: center !important;
+    font-size: 12px;
+    font-weight: bold;
+    width: 50%;
+    height: 100%;
+}
+
+
+.sign p:nth-child(2){
+    margin-top: 30px;
+}
+
+
+
+
+/*Fin people*/

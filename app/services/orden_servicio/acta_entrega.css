@@ -1,0 +1,107 @@
+*{
+    margin:0px; 
+    padding:0px;
+    font-size:17x;
+}
+
+span{
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.clearFix{
+    float:none;
+    clear:both;
+}
+
+#contenedor{
+    width:900px;
+    height: 1150px;
+    
+}
+
+/*Header*/
+
+#header{
+    width:100%;
+    
+}
+
+#header>img{
+    display:inline-block;
+    margin:5px;
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 135px;
+    width:260px
+}
+
+#header>div{
+    display:inline-block;
+    width:462px;
+    margin-left: 130px;
+    
+}
+
+
+#header>div>img{
+    display:inline-block;
+    height: 115px;
+    width: 120px;
+    
+    margin-left: 20px;
+}
+#header>div>div{
+    display:inline-block;
+}
+
+
+#header>div>div p{
+    line-height: 25px;
+    text-align: end;
+    word-spacing: 5px;
+}
+
+
+/*Cuerpo*/
+
+#cuerpo{
+    width:100%;
+    margin:0px auto;
+    margin-top: 30px;
+}
+
+#cuerpo p{
+    font-size: 17px;
+    margin: 25px;
+}
+
+#cuerpo p:first-child,
+#cuerpo p:nth-child(2),
+#cuerpo p:nth-child(4){
+    font-size: 23px;
+    text-align: center;
+}
+
+/*Firmas*/
+
+#firmas{
+    width:100%;
+}
+
+table{
+    width:100%;
+}
+
+table tr td {
+    width:50%;
+    height:100px;
+    border:1px solid black;
+}
+
+
+table tr td p{
+    text-align: center;
+}
