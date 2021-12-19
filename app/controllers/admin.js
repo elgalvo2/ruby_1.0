@@ -55,4 +55,20 @@ const createProgram = (req,res)=>{
     }
 }
 
-module.exports = {getTechnicians, createProgram, setProperty};
+const register_provider = (req, res)=>{
+    const ProviderModel = getModelByName('provider');
+
+    try{
+        ProviderModel.setProvider(req.body)
+        .then((data)=>{
+            res.status(200).send({success:true, data:data});
+        }).catch((err)=>{
+            res.status(200).send({success:false, error:err.message});
+        })
+    }catch(err){
+        res.status(500).send({success:false, error:err})
+    }
+}
+
+
+module.exports = {getTechnicians, createProgram, setProperty, register_provider};
