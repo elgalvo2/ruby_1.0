@@ -57,6 +57,7 @@ const createProgram = (req,res)=>{
 
 const register_provider = (req, res)=>{
     const ProviderModel = getModelByName('provider');
+    
 
     try{
         ProviderModel.setProvider(req.body)
@@ -66,9 +67,61 @@ const register_provider = (req, res)=>{
             res.status(200).send({success:false, error:err.message});
         })
     }catch(err){
-        res.status(500).send({success:false, error:err})
+        res.status(500).send({success:false, error:err.message})
+    }
+}
+
+const getProviders = (req,res)=>{
+    const ProviderModel = getModelByName('provider');
+
+    try{
+        ProviderModel.getProviders()
+        .then((data)=>{
+            res.status(200).send({success:true,data:data})
+        }).catch((err)=>{
+            res.satatus(200).send({success:false,err:err.message})
+        })
+
+    }catch(err){
+        res.status(500).send({success:false, err: err.message});
+    }
+
+}
+
+const getProviderByNumber = (req,res)=>{
+    const ProviderModel = getModelByName('provider');
+
+    try{
+        ProviderModel.getProviderByNumber(req.body)
+        .then((data)=>{
+            res.status(200).send({success:true, data:data});
+        }).catch((err)=>{
+            res.status(200).send({success:false, error: err.message})
+        })
+    }catch(err){
+        res.status(500).send({success:false, error:err.message});
+    }
+}
+
+const updateProvider = (req, res)=>{
+    const ProviderModel = getModelByName('provider');
+
+    const provider_no = req.body.provider_no;
+    const providerInfo = req.body.providerInfo;
+
+    try{
+        ProviderModel.updateProvider(provider_no,providerInfo)
+        .then((data)=>{
+            res.status(200).send({success:true, data:data})
+        }).catch((err)=>{
+            res.status(200).send({success:false,error:err.message})
+        })
+    }catch(err){
+        res.status(500).send({success:false, error:err.message})
     }
 }
 
 
-module.exports = {getTechnicians, createProgram, setProperty, register_provider};
+
+
+module.exports = {getTechnicians, createProgram, setProperty, register_provider, getProviders, getProviderByNumber,  updateProvider};

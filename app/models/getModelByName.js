@@ -7,6 +7,7 @@ require('./reports')
 require('./tasks')
 require('./properties');
 require('./providers')
+require('./bills');
 
 function getModelByName(name){
     return mongoose.model(name);
