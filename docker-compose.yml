@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: ruby_1.0DB
+    restart: always
+    ports:
+      - "27027:27017"
+    volumes:
+      - ~/ruby_1.0/data:/data/db
+    networks:
+    - mongo_network
+    
+
+  mongo-express:
+    image: mongo-express:0.54
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    depends_on:
+    - mongo
+    environment:
+      ME_CONGIF_BASICAUTH_USERNAME: root
+      ME_CONGIF_BASICAUTH_PASSWORD: root
+      ME_CONGIF_MONGODB_PORT: 20217
+      ME_CONGIF_MONGODB_ADMINUSERNAME: root
+      ME_CONGIF_MONGODB_ADMINPASSWORD: root
+    links:
+      - mongo
+    networks:
+      - mongo_network
+    
+
+networks:
+  mongo_network:
+    driver: bridge

@@ -38,6 +38,7 @@ const userSchema_conservacion = Schema({
     versionKey: false,
 })
 
+userSchema_conservacion.statics.buildUp = buildUp;
 userSchema_conservacion.statics.signup = signup;
 userSchema_conservacion.statics.login = login;
 userSchema_conservacion.statics.findUserById = findUserById;
@@ -45,16 +46,36 @@ userSchema_conservacion.statics.getTechnicians = getTechnicians;
 
 mongoose.model('user_conservacion',userSchema_conservacion,'users_conservacion');
 
+function buildUp(){
+    return this.count().then(data=>{
+        if(data == 0){
+            const initial_user ={
+                matricula: process.env.ADMIN_USERNAME,
+                password:bcrypt.hashSync(process.env.ADMIN_PASSWORD, 9),
+                firstName:'admin',
+                lastName:'admin',
+                role:'SUDO',
+            };
+            this.create(initial_user)
+        }
+    })
+} 
+
+
+
 function getTechnicians(){
     return this.find({role:"TECNICO"}).select({_id:0,matricula:1,firstName:1,lastName:1})
 }
 
 function signup(userInfo){
+
+    console.log(userInfo)
     if(!userInfo.matricula || userInfo.matricula == "") throw new Error('Ingresa una matricula válida')
     if(!userInfo.password || userInfo.password == "") throw new Error('Password is required');
     if(!userInfo.firstName || userInfo.firstName == "") throw new Error('firsName is required');
     if(!userInfo.lastName ||  userInfo.lastName == "") throw new Error('lastName is required');
     if(!userInfo.role || userInfo.role =='') throw new Error("Es necesario asignar un rol al usuario");
+
 
     return this.findOne({matricula: userInfo.matricula})
         .then(user=>{
@@ -75,8 +96,11 @@ function signup(userInfo){
 
 
 function login(matricula,password){  
+    console.log(password)
+    console.log(matricula)
     return this.findOne({matricula})
         .then(user=>{
+            console.log(user)
             if(!user) throw new Error('Incorrect credentials');
 
             const isMatch = bcrypt.compareSync(password, user.password);
