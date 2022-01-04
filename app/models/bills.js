@@ -21,6 +21,7 @@ const billSchema = Schema({
         required:true,
         trim:true,
     },
+    
     items:{
         type:Object,
         required:true,

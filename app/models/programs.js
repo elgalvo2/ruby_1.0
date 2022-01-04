@@ -24,6 +24,7 @@ const ProgramSchema = Schema({
         default:[]
     },
     reportId:{
+        
     },
     finish:{type:Boolean,  default:false},
     finish_date:{type:String,  default:'dd-mm-aa'},
