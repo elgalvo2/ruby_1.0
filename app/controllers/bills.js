@@ -19,6 +19,7 @@ const setBill = (req,res)=>{
 const markAsRecived = (req,res)=>{
     const BillModel = getModelByName('bill');
 
+    
     try{
         BillModel.markAsRecived(req.body.bill_no,req.body.provider_no)
         .then((data)=>{

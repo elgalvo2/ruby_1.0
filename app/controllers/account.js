@@ -83,7 +83,7 @@ const current_user = (req,res)=>{
         .then(user=>{
             res.status(200).send({success:true,data:{user}});
         }).catch(err=>res.status(200).send({success:false,error:err.message}));
-};
+}; 
 
 
 module.exports = {signup, login, current_user,getTechnicians};

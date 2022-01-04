@@ -24,3 +24,4 @@ const TechnicianSchema = Schema({
 model('technician',TechnicianSchema, 'technicians');
 
 
+

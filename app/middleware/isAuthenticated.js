@@ -21,6 +21,7 @@ function verifyAuthToken(token){
     }
 
     return user;
+    
 }
 
 module.exports = isAuthenticated;

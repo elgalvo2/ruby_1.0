@@ -30,6 +30,7 @@ const propertySchema = Schema({
     centro_costos:{type:String, required:true, trim:true},
     circunscripcion:{type:String, required:true,trim:true},
     jefe_conservacion:{type:String, required:true},
+    
 
 
 },

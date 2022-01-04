@@ -21,6 +21,7 @@ const setProperty = (req,res)=>{
 }   
 
 
+
 const getTechnicians = (req,res)=>{
     const UserModel = getModelByName('user_conservacion');
 
