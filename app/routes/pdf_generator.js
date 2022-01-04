@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {create_orden_compra, get_pdf} = require("../controllers/pdf_generator.js")
+const {create_order, get_purchase_order, get_service_order} = require("../controllers/pdf_generator.js")
 
-router.post('/orden_compra',create_orden_compra)
-router.get('/',get_pdf);
+router.post('/orden_compra',create_order)
+router.get('/purchase_order',get_purchase_order);
+router.get('/service_order',get_service_order);
+
+
 
 
 module.exports = router;
