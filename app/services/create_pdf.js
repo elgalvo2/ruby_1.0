@@ -26,7 +26,7 @@ async function purchase_order_pedido_to_pdf(page, unit, provider, order) {
 }
 
 async function purchase_order_fundamentos_to_pdf(page, unit, provider, order) {
-    console.log('entra aqui 0')
+    
 
     await page.evaluate((unit, provider, order) => {
 
@@ -60,7 +60,12 @@ async function purchase_order_fundamentos_to_pdf(page, unit, provider, order) {
 
 async function purchase_order_portada_to_pdf(page, unit, provider, order) {
 
+    
+
+
     await page.evaluate((unit, provider, order) => {// talves el nombre de lor argumentos tiene que cooincidir con el de los heredados 
+
+        
 
         document.getElementById("orden_compra").textContent = order.orden_id;
 
@@ -70,6 +75,8 @@ async function purchase_order_portada_to_pdf(page, unit, provider, order) {
         document.getElementById("rfc").textContent = provider.rfc;
         document.getElementById("rep_legal").textContent = provider.rep_legal;
         document.getElementById("dom_tel").textContent = provider.domicilio_prov + ' ' + provider.telefono_prov;
+
+        
 
         /*right Data*/
         document.getElementById("aut_num").textContent = order.autorizacion_id;
@@ -88,6 +95,7 @@ async function purchase_order_portada_to_pdf(page, unit, provider, order) {
         document.getElementById("ui").textContent = unit.unidad_informacion;
         document.getElementById("cc").textContent = unit.centro_costos;
 
+        
         document.getElementById("pp_1").textContent = order.partida_presu[0];
         document.getElementById("pp_2").textContent = order.partida_presu[1];
 
@@ -99,6 +107,7 @@ async function purchase_order_portada_to_pdf(page, unit, provider, order) {
 
         /*Articulos del pedido*/
 
+        
 
         order.articulos.map((el, index) => {
             console.log('se ejecuta hasta aqui')
@@ -114,7 +123,7 @@ async function purchase_order_portada_to_pdf(page, unit, provider, order) {
         document.getElementById("cant_iva").textContent = "$" + order.iva;
         document.getElementById("cant_total").textContent = "$" + order.importe_iva;
 
-
+        
         /*Firmas*/
 
         document.getElementById("ing").textContent = unit.jefe_conservacion;
@@ -127,6 +136,7 @@ async function purchase_order_portada_to_pdf(page, unit, provider, order) {
 
     return page;
 }
+
 
 async function service_order_portada_to_pdf(page, unit, provider, order) {
     await page.evaluate((unit, provider, order) => {
@@ -181,8 +191,10 @@ async function service_order_portada_to_pdf(page, unit, provider, order) {
 }
 
 async function service_order_desarrollo_to_pdf(page, unit, provider, order) {
+
     await page.evaluate((unit, provider, order) => {
 
+        console.log('1')
         //documento info izquierda
 
         const d = (id, text) => {
@@ -199,7 +211,10 @@ async function service_order_desarrollo_to_pdf(page, unit, provider, order) {
         d('fecha_ini', order.fecha_inicio);
         d('fecha_fin', order.fecha_termino);
 
-        order.servicios.map((serv) => {
+
+        console.log('1')
+
+        order.articulos.map((serv) => {
             console.log('ejecutando')
             document.getElementById('tota').insertAdjacentHTML('beforebegin',
                 `<tr class='table_body'><td>${serv.partida}</td><td>${serv.descripcion}</td><td>${serv.unidad}</td><td>${serv.cantidad}</td><td>${serv.cantidad}</td><td>$${serv.precio_unitario}</td><td>$${serv.precio_unitario}</td><td>$${serv.importe}</td><td>$${serv.importe}</td></tr>`
@@ -225,6 +240,7 @@ async function service_order_desarrollo_to_pdf(page, unit, provider, order) {
         d('encargado_unidad', unit.director);
 
     }, unit, provider, order)
+    return page;
 }
 
 async function service_order_fundamento_to_pdf(page, unit, provider, order) {
@@ -241,7 +257,7 @@ async function service_order_fundamento_to_pdf(page, unit, provider, order) {
         d('unidad', unit.inmueble);
         d('ubicacion', unit.domicilio_inmu);
         d('objeto_contra', order.uso);
-        d('prestador_servicio', provider.rfc);
+        d('prestador_servicio', provider.razon_social);
         d('rep_legal', provider.rep_legal);
         d('importe_sin_iva', order.importe_no_iva);
         d('plazo_entrega', order.plazo_entrega);
@@ -249,7 +265,7 @@ async function service_order_fundamento_to_pdf(page, unit, provider, order) {
         d('text_consideraciones', order.texto_consideraciones);
 
         d('fund_adjudicacion', order.fundamento_adjudicacion)
-        d('pres_servicio', provider.rfc);
+        d('pres_servicio', provider.razon_social);
         d('importe_iva', order.importe_iva);
         d('importe_iva_letra', order.importe_texto);
         d('placito', order.plazo_entrega);
@@ -261,10 +277,11 @@ async function service_order_fundamento_to_pdf(page, unit, provider, order) {
 
 
     }, unit, provider, order)
+    return page;
 }
 
 async function service_order_acta_entrega_to_pdf(page, unit, provider, order) {
-    await page.evalute((unit, provider, order) => {
+    await page.evaluate((unit, provider, order) => {
 
         const d = (id, text) => {
             document.getElementById(id).innerText = text;
@@ -292,6 +309,7 @@ async function service_order_acta_entrega_to_pdf(page, unit, provider, order) {
         d('institucion_interesado_extra', unit.inmueble);
         d('nombre_interesado_extra', unit.director);
     }, unit, provider, order)
+    return page;
 }
 
 
