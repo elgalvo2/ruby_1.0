@@ -226,7 +226,7 @@ async function service_order_desarrollo_to_pdf(page, unit, provider, order) {
         d('sub_tota_2', '$' + order.importe_no_iva);
 
         d('totl', '$' + order.importe_iva);
-        d('totl_2', '$' + order.importe_no_iva);
+        d('totl_2', '$' + order.importe_iva);
 
         d('iva', '$' + order.iva);
         d('iva_2', '$' + order.iva)
