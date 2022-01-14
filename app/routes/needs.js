@@ -17,16 +17,16 @@ const {
 
     router.post('/setNeed',setNeed); // pass
     router.put('/setProvider',setProviderAndCost);//pass
-    router.put('/setAuth',SetAuthAndAprovCost);
-    router.put('/setDates',setSFDate);
-    router.put('/setRecived',setRecived);
-    router.put('/setBill',setBill);
-    router.put('/setSendToSign',setSendedToSign);
-    router.put('/signed',markAsSigned);
+    router.put('/setAuth',SetAuthAndAprovCost); //pass
+    router.put('/setDates',setSFDate);//pass
+    router.put('/setRecived',setRecived);//pass
+    router.put('/setBill',setBill);//pass
+    router.put('/setSendToSign',setSendedToSign);//pass
+    router.put('/signed',markAsSigned);//pass
     router.put('/setSendToPay',setSendedToPayAndDate);
     router.get('/getNeeds',getneeds);//pass
     router.delete('/deleteNeed',deleteneed); //pass
-    router.get('/:id',getNeedByID);
+    router.get('/:id',getNeedByID);//pass
     router.put('/updateNeed',updateneed);
 
 module.exports = router;

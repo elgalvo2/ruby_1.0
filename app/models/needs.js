@@ -252,6 +252,7 @@ function setBill({bill_no},needID){
 
     return this.findOne({_id:needID})
     .then((need)=>{
+        console.log('hiii',need)
         if(!need)throw new Error('No need found')
 
         need.set({bill_no})
@@ -276,6 +277,7 @@ function setSendedToSign({sended_to_sign},needID){
 }
 
 function markAsSigned({signed},needID){
+    
     if(signed == undefined) throw new Error('If sended to sign no specified')
 
     return this.findOne({_id:needID})
@@ -313,7 +315,7 @@ function deleteneed({_id}){
     return this.deleteOne(_id)
 }
 
-function getNeedByID({_id}){
+function getNeedByID(_id){
     return this.findOne({_id})
 }
 
@@ -329,14 +331,15 @@ function updateneed({
     start_date,
     finish_date,
     notes,
-    bill_no
+    bill_no,
+    use
 },_id){
     const update = {};
-
+    if(use) update.use = use
     if(legal_fundation) update.legal_fundation = legal_fundation;
     if(background) update.background = background;
     if(provider_no) update.provider_no = provider_no;
-    if(proposed_cost) update.proposed_cost = proposed_cost;
+    if(proposed_cost) throw new Error ('proposed cost cannot be changed');
     if(auth_no) update.auth_no = auth_no;
     if(approved_cost) update.approved_cost = approved_cost;
     if(order_no) update.order_no = order_no;

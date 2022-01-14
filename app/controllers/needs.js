@@ -123,6 +123,8 @@ const markAsSigned = (req,res)=>{
     const NeedModel = getModelByName('need');
     const needID = req.body._id;
 
+    
+
 
     try{
         NeedModel.markAsSigned(req.body,needID)
@@ -190,7 +192,8 @@ const deleteneed = (req,res)=>{
 
 const getNeedByID = (req,res)=>{
     const NeedModel = getModelByName('need');
-    const needID = req.body._id;
+    console.log('id',req.params.id)
+    const needID = req.params.id;
 
 
     try{
