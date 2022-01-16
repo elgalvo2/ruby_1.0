@@ -66,7 +66,7 @@ const needSchema = Schema({
         default:false
     },
     notes:{
-        type:String
+        type:Array
     },
     //etapa de desahogo
     bill_no:{
@@ -112,6 +112,7 @@ needSchema.statics.getneeds = getneeds;
 needSchema.statics.deleteneed = deleteneed;
 needSchema.statics.getNeedByID = getNeedByID;
 needSchema.statics.updateneed = updateneed;
+needSchema.statics.updateNotes = updateNotes;
 
 
 needSchema.statics.markAsDone = markAsDone;
@@ -233,8 +234,8 @@ function setSFDate({order_no,start_date,finish_date},needID){
 function setRecived({recived, notes},needID){
     if(recived == null || recived==undefined) throw new Error ('Pleace specified if the need has been recived')
     if(!needID) throw new Error('Need id is not specified')
-    if(!notes) {
-        const notes = ""
+    if(!notes || notes.length == 0) {
+        const notes = ["No hay notas que mostrar"]
     }
     return this.findOne({_id:needID})
     .then((need)=>{
@@ -247,12 +248,12 @@ function setRecived({recived, notes},needID){
     })
 }
 
+
 function setBill({bill_no},needID){
     if(!bill_no || bill_no=="") throw new Error ('Bill number has to be provided')
 
     return this.findOne({_id:needID})
     .then((need)=>{
-        console.log('hiii',need)
         if(!need)throw new Error('No need found')
 
         need.set({bill_no})
@@ -345,7 +346,6 @@ function updateneed({
     if(order_no) update.order_no = order_no;
     if(start_date) update.start_date = start_date;
     if(finish_date) update.finish_date = finish_date;
-    if(notes) update.notes = notes;
     if(bill_no) update.bill_no = bill_no;
 
     return this.findOne({_id})
@@ -422,5 +422,16 @@ function markAsDone(needToMark, provider){
 }
 
 
+function updateNotes({notes},needID){
+    if(!notes || notes=="") throw new Error("No notes setted to update")
+    return this.findOne({_id:needID})
+        .then((need)=>{
+            if(!need) throw new Error('Not need founded')
+            need.set({notes})
+            return need.save()
+        }).catch((err)=>{
+            return err.message;
+        })
+}
 
 

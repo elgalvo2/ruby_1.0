@@ -225,6 +225,22 @@ const updateneed = (req,res)=>{
     }
 }
 
+const updateNotes = (req,res)=>{
+    const NeedModel = getModelByName('need');
+    const needID = req.body._id
+
+    try{
+        NeedModel.updateNotes(req.body,needID)
+        .then((data)=>{
+            res.status(200).send({success:true, data:data})
+        }).catch((err)=>{
+            res.status(200).send({success:false, error:err.message})
+        })
+    }catch(err){
+        res.status(500).send({success:false, error:err.message})
+    }
+}
+
 
 
 
@@ -356,5 +372,6 @@ module.exports ={
     getneeds,
     deleteneed,
     getNeedByID,
-    updateneed
+    updateneed,
+    updateNotes
 }

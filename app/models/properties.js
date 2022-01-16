@@ -41,6 +41,10 @@ const propertySchema = Schema({
 
 propertySchema.statics.setProperty = setProperty;
 propertySchema.statics.getProperty_forContext = getProperty_forContext;
+propertySchema.statics.updateProperty = updateProperty;
+propertySchema.statics.getPropertyById = getPropertyById;
+propertySchema.statics.getProperties = getProperties;
+propertySchema.statics.deleteProperty = deleteProperty;
 
 
 mongoose.model('property',propertySchema,'properties');
@@ -51,12 +55,12 @@ function setProperty(propertyInfo){
     if(!propertyInfo.direccion || propertyInfo.direccion == "") throw new Error('Ingresa la dirección de la unidad')
     if(!propertyInfo.localidad || propertyInfo.localidad == "") throw new Error('Ingresa la localidad de la unidad')
 
-    if(!propertyInfo.direccion || propertyInfo.direccion == "") throw new Error('Ingresa la dirección de la unidad')
+    if(!propertyInfo.director || propertyInfo.direccion == "") throw new Error('Ingresa el nombre del director de la unidad')
     
 
     if(!propertyInfo.propietario || propertyInfo.propietario == "") throw new Error('Ingresa el propietario de la unidad')
     if(!propertyInfo.unidad_informacion || propertyInfo.unidad_informacion == "") throw new Error('Ingresa el nombre de la unidad')
-    if(!propertyInfo.centro_costos || propertyInfo.centro_costos == "") throw new Error('Ingresa la dirección de la unidad')
+    if(!propertyInfo.centro_costos || propertyInfo.centro_costos == "") throw new Error('Ingresa el centro de costos de la unidad')
 
     if(!propertyInfo.circunscripcion || propertyInfo.circunscripcion == "") throw new Error('Ingresa la circunscripcion de la unidad')
     if(!propertyInfo.jefe_conservacion || propertyInfo.jefe_conservacion == "") throw new Error('Ingresa el jefe_conservacion de la unidad')
@@ -87,11 +91,9 @@ function setProperty(propertyInfo){
             throw new Error(err)
         });
 }
-
-
 function getProperty_forContext(){
     const getCircunscriptionName = require('./helpers/table_circuscripcion')
-    return this.find().select({_id:0})
+    return this.find()
     .then(data=>{
         const context = [];
         data.map((property)=>{
@@ -104,4 +106,67 @@ function getProperty_forContext(){
     }).catch(err=>{
         throw new Error(err);
     })
+}
+ function updateProperty ({
+    inmueble,
+    direccion,
+    administrador,
+    director,
+    contador,
+    localidad,
+    telefono,
+    propietario,
+    unidad_informacion,
+    centro_costos,
+    circunscripcion,
+    jefe_conservacion,
+ },_id){
+     const update = {}
+     if(inmueble) update.inmueble = inmueble
+     if(direccion) update.direccion = direccion
+     if(administrador) update.administrador = administrador
+     if(director) update.director = director
+     if(contador) update.contador = contador
+     if(localidad) update.localidad = localidad
+     if(telefono) update.telefono = telefono
+     if(propietario) update.propietario = propietario
+     if(unidad_informacion) update.unidad_informacion = unidad_informacion
+     if(centro_costos) update.centro_costos = centro_costos
+     if(circunscripcion) update.circunscripcion = circunscripcion
+     if(jefe_conservacion) update.jefe_conservacion = jefe_conservacion
+
+     return this.findOne({_id})
+     .then((property)=>{
+         if(!property) throw new Error ('Property not found')
+         if(Object.keys(update).length == 0) return property;
+         
+         property.set(update);
+         return property.save()
+     }).catch((err)=>{
+         return err.message
+     })
+
+}
+function getPropertyById(_id){
+    if(!_id) throw new Error('Id no be specified')
+
+    return this.findOne({_id})
+    .then((property)=>{
+        if(!property) throw new Error('No property found')
+        return property
+    }).catch((err)=>{
+        return err.message
+    })
+}
+function getProperties(){
+     return this.find()
+     .then((properties)=>{
+         if(!properties) throw new Error ('No properties found')
+         return properties
+     }).catch((err)=>{
+         return err.message
+     })
+}
+function deleteProperty({_id}){
+     return this.deleteOne({_id})
 }

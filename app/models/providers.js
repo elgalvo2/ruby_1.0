@@ -59,7 +59,7 @@ mongoose.model('provider',providerSchema,'providers');
 function setProvider(providerInfo){
     
     if(!providerInfo.provider_no || providerInfo.provider_no=="" )throw new Error('Provider Number must be provided');
-    if(!providerInfo.razon_social || providerInfo.razon_social=="" )throw new Error('Provider Number must be provided');
+    if(!providerInfo.razon_social || providerInfo.razon_social=="" )throw new Error('Provider name must be provided');
     if(!providerInfo.rfc || providerInfo.rfc =="")throw new Error('Provider RFC mus be provided');
     if(!providerInfo.domicilio || providerInfo.domicilio =="") throw new Error("Provider address must be provided");
     if(!providerInfo.telefono || providerInfo.telefono == "") throw new Error('Provider telephone mus be provided');
@@ -100,20 +100,24 @@ function getProviderByNumber(info){
     })
 }
 
-function updateProvider(provider_no,providerInfo){
+function updateProvider(providerInfo,providerID){
     const update = {};
 
     if(providerInfo.provider_no) throw new Error('Provider Number can not be changed');
-
+    if(!providerID || providerID == "") throw new Error ('Provider Id mus be specified')
     if(providerInfo.razon_social) update.razon_social = providerInfo.razon_social;
     if(providerInfo.rep_legal) update.rep_legal = providerInfo.rep_legal;
     if(providerInfo.rfc) update.rfc = providerInfo.rfc;
     if(providerInfo.domicilio) update.domicilio = providerInfo.domicilio;
     if(providerInfo.telefono) update.telefono = providerInfo.telefono;
-    if(providerInfo.email) update.email = providerInfo.email;
+    if(providerInfo.email && isValidEmail(providerInfo.email)){
+        update.email = providerInfo.email;
+    }else throw new Error('Email provided is not valid')
+        
     if(providerInfo.giro) update.giro = providerInfo.giro;
 
-    return this.findOne({provider_no})
+    
+    return this.findOne({providerID})
     .then((provider)=>{
         if(!provider) throw new Error('Provider not found');
         if(Object.keys(update).length==0) return provider;
