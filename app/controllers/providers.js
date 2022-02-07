@@ -3,6 +3,8 @@ const getModelByName = require('../models/getModelByName');
 
 const register_provider = (req, res)=>{
     const ProviderModel = getModelByName('provider');
+
+    console.log(req.body)
     
 
     try{
@@ -13,7 +15,8 @@ const register_provider = (req, res)=>{
             res.status(200).send({success:false, error:err.message});
         })
     }catch(err){
-        res.status(500).send({success:false, error:err.message})
+        console.log(err)
+        res.status(500).send({success:false, error:err})
     }
 }
 

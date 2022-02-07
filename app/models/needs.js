@@ -128,8 +128,7 @@ function setneed(needInfo){
     if(needInfo.by_contract == undefined || needInfo.by_contract==null) throw new Error ('If it is contract must be specified');
     if(!needInfo.use || needInfo.use=="") throw new Error('Use must be provided');
     if(!needInfo.unit || needInfo.unit==0) throw new Error('Unit must be provided');
-    if(!needInfo.creation_date || needInfo.creation_date=="") throw new Error('Date of creation mus be provided');
-    
+    if(!needInfo.creation_date || needInfo.creation_date=="") throw new Error('Date of creation mus be provided');  
     if(!needInfo.legal_fundation || needInfo.legal_fundation == "") throw new Error('Legal fundation must be specified');
     if(!needInfo.background || needInfo.background == "") throw new Error('Background must be specified');
     

@@ -20,11 +20,9 @@ const propertySchema = Schema({
     director:{type:String},
     contador:{type:String},
     localidad:{type:String, required:true},
-
     telefono:{
         type: String,
     },
-    
     propietario:{type:String, required:true, trim:true},
     unidad_informacion:{type:String, required:true,trim:true},
     centro_costos:{type:String, required:true, trim:true},
@@ -55,11 +53,11 @@ function setProperty(propertyInfo){
     if(!propertyInfo.direccion || propertyInfo.direccion == "") throw new Error('Ingresa la dirección de la unidad')
     if(!propertyInfo.localidad || propertyInfo.localidad == "") throw new Error('Ingresa la localidad de la unidad')
 
-    if(!propertyInfo.director || propertyInfo.direccion == "") throw new Error('Ingresa el nombre del director de la unidad')
+    if(!propertyInfo.director || propertyInfo.director == "") throw new Error('Ingresa el nombre del director de la unidad')
     
 
     if(!propertyInfo.propietario || propertyInfo.propietario == "") throw new Error('Ingresa el propietario de la unidad')
-    if(!propertyInfo.unidad_informacion || propertyInfo.unidad_informacion == "") throw new Error('Ingresa el nombre de la unidad')
+    if(!propertyInfo.unidad_informacion || propertyInfo.unidad_informacion == "") throw new Error('Ingresa la unidad de informacion de la unidad')
     if(!propertyInfo.centro_costos || propertyInfo.centro_costos == "") throw new Error('Ingresa el centro de costos de la unidad')
 
     if(!propertyInfo.circunscripcion || propertyInfo.circunscripcion == "") throw new Error('Ingresa la circunscripcion de la unidad')

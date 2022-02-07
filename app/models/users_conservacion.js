@@ -46,6 +46,7 @@ userSchema_conservacion.statics.getTechnicians = getTechnicians;
 
 mongoose.model('user_conservacion',userSchema_conservacion,'users_conservacion');
 
+
 function buildUp(){
     return this.count().then(data=>{
         if(data == 0){
@@ -56,6 +57,7 @@ function buildUp(){
                 lastName:'admin',
                 role:'SUDO',
             };
+            console.log('Usuario admin creado...')
             this.create(initial_user)
         }
     })

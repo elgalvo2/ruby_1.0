@@ -1,6 +1,8 @@
 const getModelByName = require('../models/getModelByName');
 
 const setProperty = (req,res)=>{
+
+    
     const PropertyModel = getModelByName('property');
 
     try{
