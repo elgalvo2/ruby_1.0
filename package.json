@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "dev": "set ENV=development&& nodemon",
-    "production":"set ENV=production&& node app.js"
+    "dev": "set ENV=development&& set OP=windows&& nodemon",
+    "production":"set ENV=production&& set OP=linux&& node app.js",
+    "testingEc2":"set ENV=development&& set OP=linux&& nodemon"
   },
   "repository": {
     "type": "git",

@@ -4,6 +4,7 @@ const dbConnect = ()  =>{
  
     const DB_URI = process.env.DB_URI || `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
     console.log(process.env.ENV)
+    console.log(process.env.OP)
     
     mongoose.connect(DB_URI,{
         useNewUrlParser: true,

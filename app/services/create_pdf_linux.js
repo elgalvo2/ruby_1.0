@@ -133,10 +133,188 @@ async function purchase_order_portada_to_pdf(page,unit,provider, order){
 
     return page;
 }
+async function service_order_portada_to_pdf(page, unit, provider, order) {
+    await page.evaluate((unit, provider, order) => {
+
+        const d = (id, text) => {
+            document.getElementById(id).innerText = text;
+        }
+
+        d('orden_servicio', order.orden_id);
+        d('razon_social', provider.razon_social);
+        d('no_proveedor', provider.no_proveedor);
+        d('rfc', provider.rfc);
+        d('rep_legal', provider.rep_legal);
+        d('dom_tel', (provider.domicilio_prov + ' tel:' + provider.telefono_prov));
+        d('aut_num', order.autorizacion_id);
+        d('fund_ad', order.fundamento_adjudicacion)
+        d('imp_final_iva', '$' + order.importe_iva);
+        d('fecha_in', order.fecha_inicio);
+        d('fecha_fin', order.fecha_termino);
+
+
+
+        //unit data
+        d('circuns_1', unit.circunscripcion[0]);
+        d('circuns_2', unit.circunscripcion[1]);
+        d('local', unit.localidad);
+        d('inmu', unit.inmueble);
+        d('dom', unit.domicilio_inmu);
+        d('ui', unit.unidad_informacion);
+        d('cc', unit.centro_costos);
+        d('pp_1', order.partida_presu[0]);
+        d('pp_2', order.partida_presu[1]);
+        d('esp_1', order.especialidad[0]);
+        d('esp_2', order.especialidad[1]);
+        d('sub_1', order.sub_especialidad[0]);
+        d('sub_2', order.sub_especialidad[1]);
+
+        //detalles
+        d('uso_', order.uso);
+        d('importe_subtotal', '$' + order.importe_no_iva);
+        d('impo_final', '$' + order.importe_iva);
+
+
+        //people
+        d('ing', unit.jefe_conservacion);
+        d('dir', unit.director);
+        d('adm', unit.administrador);
+
+    }, unit, provider, order)
+
+    return page
+}
+
+async function service_order_desarrollo_to_pdf(page, unit, provider, order) {
+
+    await page.evaluate((unit, provider, order) => {
+
+        console.log('1')
+        //documento info izquierda
+
+        const d = (id, text) => {
+            document.getElementById(id).innerText = text;
+        }
+
+        d('orden_servicio', order.orden_id);
+        d('lugar_fecha', unit.circunscripcion[1] + ', ' + unit.localidad + ' ' + order.fecha_inicio)
+        d('uso_', order.uso);
+        d('razon_social', provider.razon_social);
+        d('rfc', provider.rfc);
+        d('domicilio_prov', provider.domicilio_prov);
+        d('nom_unidad', unit.inmueble);
+        d('fecha_ini', order.fecha_inicio);
+        d('fecha_fin', order.fecha_termino);
+
+
+        console.log('1')
+
+        order.articulos.map((serv) => {
+            console.log('ejecutando')
+            document.getElementById('tota').insertAdjacentHTML('beforebegin',
+                `<tr class='table_body'><td>${serv.partida}</td><td>${serv.descripcion}</td><td>${serv.unidad}</td><td>${serv.cantidad}</td><td>${serv.cantidad}</td><td>$${serv.precio_unitario}</td><td>$${serv.precio_unitario}</td><td>$${serv.importe}</td><td>$${serv.importe}</td></tr>`
+            )
+        })
+
+
+        d('sub_tota', '$' + order.importe_no_iva);
+        d('sub_tota_2', '$' + order.importe_no_iva);
+
+        d('totl', '$' + order.importe_iva);
+        d('totl_2', '$' + order.importe_iva);
+
+        d('iva', '$' + order.iva);
+        d('iva_2', '$' + order.iva)
+
+        //firmas
+
+        d('razon_so', provider.razon_social);
+        d('ing', unit.jefe_conservacion);
+
+
+        d('encargado_unidad', unit.director);
+
+    }, unit, provider, order)
+    return page;
+}
+
+async function service_order_fundamento_to_pdf(page, unit, provider, order) {
+    await page.evaluate((unit, provider, order) => {
+
+
+        const d = (id, text) => {
+            document.getElementById(id).innerText = text;
+        }
+
+        d('orden_servicio', order.orden_id);
+        d('fecha_dic', order.fecha_inicio);
+        d('localidad', unit.localidad);
+        d('unidad', unit.inmueble);
+        d('ubicacion', unit.domicilio_inmu);
+        d('objeto_contra', order.uso);
+        d('prestador_servicio', provider.razon_social);
+        d('rep_legal', provider.rep_legal);
+        d('importe_sin_iva', order.importe_no_iva);
+        d('plazo_entrega', order.plazo_entrega);
+        d('text_antecedente', order.texto_antecedente);
+        d('text_consideraciones', order.texto_consideraciones);
+
+        d('fund_adjudicacion', order.fundamento_adjudicacion)
+        d('pres_servicio', provider.razon_social);
+        d('importe_iva', order.importe_iva);
+        d('importe_iva_letra', order.importe_texto);
+        d('placito', order.plazo_entrega);
+        d('fecha_in', order.fecha_inicio);
+        d('fecha_ter', order.fecha_termino);
+
+        d('ing', unit.jefe_conservacion);
+        d('dir', unit.director)
+
+
+    }, unit, provider, order)
+    return page;
+}
+
+async function service_order_acta_entrega_to_pdf(page, unit, provider, order) {
+    await page.evaluate((unit, provider, order) => {
+
+        const d = (id, text) => {
+            document.getElementById(id).innerText = text;
+        }
+
+        d('num_servicio', order.orden_id);
+        d('hora_acta', order.hora_acta);
+        d("fecha_termino_acta", order.fecha_inicio)
+        d('inmueble_acta', unit.inmueble);
+        d('dir_inmu_acta', unit.domicilio_inmu);
+        d('prov_acta', provider.razon_social);
+        d('fecha_inicio_acta', order.fecha_inicio);
+        d('orden_serv_acta', order.orden_id);
+        d('uso_acta', order.uso);
+        d('dir_inmueble_acta_2', unit.domicilio_inmu);
+        d('importe_sin_iva', order.importe_no_iva);
+        d('fecha_inicio_acta_2', order.fecha_inicio);
+        d('importe_sin_iva_letra', order.subtotal_text);
+        d('fecha_inicio_acta_2', order.fecha_inicio);
+        d('fecha_termino_acta_2', order.fecha_termino);
+        d('orden_servicio_acta_2', order.orden_id);
+
+        d('prov_rep_legal', provider.rep_legal);
+
+        d('institucion_interesado_extra', unit.inmueble);
+        d('nombre_interesado_extra', unit.director);
+    }, unit, provider, order)
+    return page;
+}
 
 
 module.exports = {
     purchase_order_portada_to_pdf,
     purchase_order_fundamentos_to_pdf,
-    purchase_order_pedido_to_pdf
-}
+    purchase_order_pedido_to_pdf,
+    service_order_portada_to_pdf,
+    service_order_desarrollo_to_pdf,
+    service_order_fundamento_to_pdf,
+    service_order_acta_entrega_to_pdf,
+
+};
