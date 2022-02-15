@@ -2,13 +2,21 @@ const mongoose = require('mongoose');
 const getModelByName = require('../app/models/getModelByName');
 const dbConnect = ()  =>{
     let db
+    let port
     if(process.env.ENV=='development'){
         db=process.env.MONGO_TEST_DB
     }else{
         db=process.env.MONGO_DB
     }
- 
-    const DB_URI = process.env.DB_URI || `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${db}`;
+
+    if(process.env.OP=='linux'){
+        port = process.env.MONGO_PORT_linux
+        console.log('aqui')
+    }else{
+        port = process.env.MONGO_PORT
+    }
+    const DB_URI = process.env.DB_URI || `mongodb://${process.env.MONGO_HOST}:${port}/${db}`;
+    console.log(DB_URI)
     console.log(process.env.ENV)
     console.log(process.env.OP)
     
