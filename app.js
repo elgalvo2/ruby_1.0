@@ -1,4 +1,4 @@
-require('dotenv').config();
+  require('dotenv').config();
 const {isAuthenticated}=require('./app/middleware');
 const express = require('express');
 const cors = require('cors');

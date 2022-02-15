@@ -1,4 +1,4 @@
-const { purchase_order_topdf, service_order_topdf } = require('../services/create_pdf_index')
+const { purchase_order_topdf, service_order_topdf } = require('../services/create_pdf_index_linux')
 
 const fs = require('fs');
 const { setTimeout } = require('timers');
@@ -60,6 +60,8 @@ const get_service_order = (req, res) => {
 
 const create_order = async (req, res) => {
     try {
+
+        console.log('aqui')
 
         if (req.body.order.order_type=="") throw new Error('Es necesario especificar el tipo de orden que se creará')
 

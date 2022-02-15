@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const getModelByName = require('../app/models/getModelByName');
 const dbConnect = ()  =>{
+    let db
+    if(process.env.ENV=='development'){
+        db=process.env.MONGO_TEST_DB
+    }else{
+        db=process.env.MONGO_DB
+    }
  
-    const DB_URI = process.env.DB_URI || `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
+    const DB_URI = process.env.DB_URI || `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${db}`;
     console.log(process.env.ENV)
     console.log(process.env.OP)
     
