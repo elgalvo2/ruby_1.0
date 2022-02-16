@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const {dbConnect} = require('./config/mongo');
 
 
-if(process.env.ENV=='development' && process.env.OP=='linux'){
+if(process.env.ENV=='development'){
     PORT = process.env.TESTING_PORT|| 5000;
 }else{
     PORT = process.env.PORT || 8000;

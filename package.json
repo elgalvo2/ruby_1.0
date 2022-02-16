@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "dev": "set ENV=development&& set OP=windows&& nodemon",
-    "production":"set ENV=production&& set OP=linux&& node app.js",
-    "testingEc2":"set ENV=development&& set OP=linux&& nodemon"
+    "dev": "cross-env ENV=development OP=windows nodemon",
+    "production": "cross-env ENV=production OP=linux node app.js",
+    "testingEc2": "cross-env ENV=development OP=linux nodemon"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "react-redux": "^7.2.5"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.13"
   }
 }
