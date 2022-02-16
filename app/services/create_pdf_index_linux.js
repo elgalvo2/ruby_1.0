@@ -107,7 +107,7 @@ async function service_order_topdf(unit_data, provider_data, order_data){
 
 
     const pge_desarrollo = await service_order_desarrollo_to_pdf(page, unit_data, provider_data, order_data);
-    await pge_desarrollo.pdf({ path: `app/services/desarrollo.pdf`, format: "letter" });
+    await pge_desarrollo.pdf({ path: `app/services/desarrollo.pdf`, format: "letter", landscape:true });
 
     await page.setContent(acta_entrega, { waitUntil: ['load', "networkidle2"] });
 
