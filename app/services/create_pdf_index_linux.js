@@ -25,9 +25,9 @@ async function order_data_topdf(unit_data, provider_data, order_data) {
 
     const page = await browser.newPage();
 
-    const portada = fs.readFileSync(__dirname + '/orden_compra/portada.html', 'utf-8');
+    const portada = fs.readFileSync(__dirname + '/orden_compra/portada.htm', 'utf-8');
     const fundamento = fs.readFileSync(__dirname + "/orden_compra/fundamento.htm", 'utf-8');
-    const pedido = fs.readFileSync(__dirname + '/orden_compra/pedido.html', 'utf-8');
+    const pedido = fs.readFileSync(__dirname + '/orden_compra/pedido.htm', 'utf-8');
 
     //genera portada
 
@@ -83,10 +83,10 @@ async function service_order_topdf(unit_data, provider_data, order_data){
 
     const page = await browser.newPage();
 
-    const portada = fs.readFileSync(__dirname + '/orden_servicio/portada.html', 'utf-8');
+    const portada = fs.readFileSync(__dirname + '/orden_servicio/portada.htm', 'utf-8');
     const fundamento = fs.readFileSync(__dirname + "/orden_servicio/fundamento.htm", 'utf-8');
-    const desarrollo = fs.readFileSync(__dirname + '/orden_servicio/desarrollo.html', 'utf-8');
-    const acta_entrega = fs.readFileSync(__dirname + '/orden_servicio/acta_entrega.html', 'utf-8');
+    const desarrollo = fs.readFileSync(__dirname + '/orden_servicio/desarrollo.htm', 'utf-8');
+    const acta_entrega = fs.readFileSync(__dirname + '/orden_servicio/acta_entrega.htm', 'utf-8');
 
     //genera portada
     await page.setContent(portada, { waitUntil: ['load', "networkidle2"] });
