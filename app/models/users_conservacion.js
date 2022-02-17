@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {isValidEmail} = require('../helpers');
 const nodemailer = require('nodemailer');
+const isValidRole = require('../helpers/posible_roles')
 
 const Schema = mongoose.Schema;
 
@@ -57,7 +58,7 @@ function buildUp(){
                 lastName:'admin',
                 role:'SUDO',
             };
-            console.log('Usuario admin creado...')
+            console.log('Usuario super_usuario creado...')
             this.create(initial_user)
         }
     })
@@ -76,7 +77,7 @@ function signup(userInfo){
     if(!userInfo.password || userInfo.password == "") throw new Error('Password is required');
     if(!userInfo.firstName || userInfo.firstName == "") throw new Error('firsName is required');
     if(!userInfo.lastName ||  userInfo.lastName == "") throw new Error('lastName is required');
-    if(!userInfo.role || userInfo.role =='') throw new Error("Es necesario asignar un rol al usuario");
+    if(!isValidRole(userInfo.role)) throw new Error("Es necesario asignar un rol valido al usuario");
 
 
     return this.findOne({matricula: userInfo.matricula})
@@ -98,8 +99,7 @@ function signup(userInfo){
 
 
 function login(matricula,password){  
-    console.log(password)
-    console.log(matricula)
+  
     return this.findOne({matricula})
         .then(user=>{
             console.log(user)
