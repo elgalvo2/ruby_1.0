@@ -22,7 +22,7 @@ const TaskSchema_v2 = Schema({
         ref:'areas',
         required:true,
     },
-
+    last_updated:{type:String},
     done:{type:Boolean, default:false},
     done_date:{type:String,default:'dd-mm-aa'},
 
@@ -31,10 +31,9 @@ const TaskSchema_v2 = Schema({
 TaskSchema_v2.statics.create_task = create_task;
 TaskSchema_v2.statics.getTasksByCreator = getTasksByCreator;
 TaskSchema_v2.statics.getTasksByArea = getTasksByArea;
-
-// TaskSchema_v2.statics.getAll = getAll;
-// TaskSchema_v2.statics.getTodayTasks = getTodayTasks;
-// TaskSchema_v2.statics.getCurrentTask = getCurrentTask;
+TaskSchema_v2.statics.getAll = getAll;
+TaskSchema_v2.statics.getCurrentTask = getCurrentTask;
+//TaskSchema_v2.statics.getTodayTasks = getTodayTasks;
 // TaskSchema_v2.statics.updateTask = updateTask;
 // TaskSchema_v2.statics.deleteTask = deleteTask;
 // TaskSchema_v2.statics.markDone = markDone;
@@ -45,7 +44,7 @@ model('task_v2',TaskSchema_v2, 'tasks_v2');
 
 function create_task(taskInfo, creador_id, area_id){
     if(!creador_id || creador_id=='') throw new Error('Creator id is required')
-    if(!area_id || area_id) throw new Error('Area id is required');
+    if(!area_id || area_id=='') throw new Error('Area id is required');
     if(!taskInfo.description || taskInfo.description == '') throw new Error('description is required');
     
     let dateobj = new Date();
@@ -63,6 +62,7 @@ function create_task(taskInfo, creador_id, area_id){
     taskInfo.area_id = area_id;
     taskInfo.created_date = newDate; 
     taskInfo.created_hour = newHour; 
+    taskInfo.folio= month.toString()+'-'+day.toString()+minute.toString()
     
     
     
@@ -73,7 +73,7 @@ function create_task(taskInfo, creador_id, area_id){
         const newTask = {
             creador_id: taskInfo.creador_id,
             area_id:taskInfo.area_id,
-            folio: 02+month+day+minute+counter,
+            folio: taskInfo.folio+'-'+counter.toString(),
             created_date: taskInfo.created_date,
             created_hour: taskInfo.created_hour,
             description: taskInfo.description,
@@ -115,14 +115,13 @@ function getTodayTasks(){
     return this.find({created_date:newDate});
 }
 
-function updateTask(taskInfo, folio){
+function updateTask(taskInfo, _id, ){
     const update = {};
     
     if(taskInfo.folio) throw new Error('Folio cant be changed');
-    
     if(taskInfo.description) update.description = taskInfo.description;
-    if(taskInfo.area) update.area = taskInfo.area;
-    if(taskInfo.technician) update.technician = taskInfo.technician;
+    if(taskInfo.area_id) update.area_id = taskInfo.area_id;
+    if(taskInfo.creator_id) update.technician = taskInfo.technician;
     if(taskInfo.technician_mat) update.technician_mat = taskInfo.technician_mat;
     
     return this.findOne({folio})

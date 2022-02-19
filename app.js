@@ -3,6 +3,7 @@ const {isAuthenticated}=require('./app/middleware');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
 let PORT
 const morgan = require('morgan');
 const {dbConnect} = require('./config/mongo');
@@ -29,4 +30,6 @@ dbConnect();
 app.listen(PORT,()=>{
     console.log("API escuchando en el puerto", PORT);
 })
+
+module.exports = app;
 

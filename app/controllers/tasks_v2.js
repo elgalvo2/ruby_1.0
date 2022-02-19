@@ -1,114 +1,81 @@
-const {HttpError} = require('../helpers/handleError');
+const { HttpError } = require('../helpers/handleError');
 const tasksModel = require('../models/tasks');
 const getModelByName = require('../models/getModelByName');
+const res = require('express/lib/response');
 
 
+const TaskSchema = getModelByName('task_v2');
 
 // auo controllers------------*
-
-const createTask = async (req,res)=>{
-    if(!req.body.task) return res.status(200).send({success:false,error:"task not found"});
-
-    const Task = getModelByName('task');
-
-    
-
-    try{
-    
-        Task.create_task(req.body.task, req.user._id)
-            .then((task)=>{
-                
-                res.status(200).send({success:true,data:{task}});
-            }).catch((err)=>res.status(200).send({success:false,error:err.message}));
-    }catch(err){
-        res.status(500).send({success:false, error:err.message});
-    }
-
-
-
-};
-
-
-const get_all_tasks = (req, res)=>{
-    const Task = getModelByName('task');
-
-    try{
-        Task.getAll()
-            .then((tasks)=>{
-                res.status(200).send({success:true,data:{tasks}});
-            }).catch(err=>res.status(200).send({success:false, error:err.message}));
-    }catch(err){
-        res.status(500).send({success:false,error:err.message});
-    }
-};
-
-const get_today_tasks = (req, res)=>{
-    const Task = getModelByName('task');
-
-    try{
-        Task.getTodayTasks()
-            .then((tasks)=>{
-                res.status(200).send({success:true,data:{tasks}});
-            }).catch(err=>res.status(200).send({success:false, error:err.message}));
-    }catch(err){
-        res.status(500).send({success:false,error:err.message});
-    }
-}
-
-const updateTask = (req,res)=>{
-    const Task = getModelByName('task');
-    try{
-        Task.updateTask(req.body.task, req.params.folio)
-            .then((updatedTask)=>{
-                res.status(200).send({success:true,data:{updatedTask}});
-            }).catch(err=>res.status(200).send({success:false,error:err.message}));
-    }catch(err){
-        res.status(500).send({success:false,error:err.message});
-    }
-}
-
-const deleteTask = (req,res)=>{
-    const Task = getModelByName('task');
-    try{
-        Task.deleteTask(req.params.folio)
-            .then((deletedTask)=>{
-                res.status(200).send({success:true,data:{deletedTask}});
-            }).catch(err=>res.status(200).send({success:false,error:err.message}));
-    }catch(err){
-        res.status(500).send({success:false,error:err.message});
+const setTask = (req, res) => {
+    const { description, creator_id, area_id } = req.body
+    try {
+        TaskSchema.create_task(req.body, creator_id, area_id).then((data) => {
+            res.status(200).send({ data: data, success: true })
+        }).catch((err) => {
+            res.status(200).send({ error: err, success: false })
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ error: err, success: false })
     }
 }
 
 
-// ----------------------------*
-
-const get_CurrentTasks = async (req,res)=>{
-    const Task = getModelByName('task');
-
+const getByCreator = (req, res) => {
+    const {id} = req.params;
     try{
-        Task.getCurrentTask()
-            .then((currentTasks)=>{
-                res.status(200).send({success:true,data:{currentTasks}});
-            }).catch((err)=>res.status(200).send({success:false,message:err.message}));
+        TaskSchema.getTasksByCreator(id)
+        .then((data)=>{
+            res.status(200).send({ data: data, success:true })
+        }).catch((err)=>{
+            res.status(200).send({ error: err, success:false })
+        })
     }catch(err){
-        res.status(500).send({success:false,message:err.message});
+        res.status(500).send({error:err, success:false })    
     }
-};
+}
 
 
-
-const get_DoneTasks = async(req,res)=>{
+const getByArea = (req,res)=>{
+    const {id} = req.params;
     try{
-        const tasks = await tasksModel.find({'Realizado':true});
-        res.send({datos:tasks});
+        TaskSchema.getTasksByArea(id)
+        .then((data)=>{
+            res.status(200).send({ data: data, success:true })
+        }).catch((err)=>{
+            res.status(200).send({ error: err, success:false })
+        })
     }catch(err){
-        httpError(res,err);
-    }
-};
+        res.status(500).send({error:err, success:false })    
+    } 
+}
+
+const getTasks = (req,res)=>{
+    try{
+        TaskSchema.getAll()
+        .then((data)=>{
+            res.status(200).send({ data: data, success:true })
+        }).catch((err)=>{
+            res.status(200).send({ error: err, success:false })
+        })
+    }catch(err){
+        res.status(500).send({error:err, success:false })    
+    } 
+}
+
+const getCurrentTask = (req,res)=>{
+    try{
+        TaskSchema.getCurrentTask()
+        .then((data)=>{
+            res.status(200).send({ data: data, success:true })
+        }).catch((err)=>{
+            res.status(200).send({ error: err, success:false })
+        })
+    }catch(err){
+        res.status(500).send({error:err, success:false })    
+    } 
+}
 
 
-
-
-
-
-module.exports = {deleteTask,get_CurrentTasks, get_DoneTasks, createTask, updateTask, get_all_tasks, get_today_tasks};
+module.exports = { setTask, getByCreator ,getByArea, getTasks, getCurrentTask};

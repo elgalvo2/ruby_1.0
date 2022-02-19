@@ -11,7 +11,7 @@ const dbConnect = ()  =>{
 
     if(process.env.OP=='linux'){
         port = process.env.MONGO_PORT_linux
-        console.log('aqui')
+       
     }else{
         port = process.env.MONGO_PORT
     }
@@ -25,9 +25,13 @@ const dbConnect = ()  =>{
         useUnifiedTopology: true,
     },(err, res)=>{
         if(!err){
-            console.log('***** Conexion a la base de datos exitosa *****');
             const userAdmin = getModelByName('user_conservacion');
-            userAdmin.buildUp();
+            userAdmin.buildUp().then(()=>{
+
+                console.log('***** Conexion a la base de datos exitosa *****');
+            }).catch((err)=>{
+                console.log('Error en proceso de inciacion', err)
+            })
         }else{
             console.log('***** Conexion a la base de datos fallida *****');
             console.log("error", err.message)
