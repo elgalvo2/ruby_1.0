@@ -8,6 +8,7 @@ function isAuthenticated(req, res,next){
     const user = verifyAuthToken(access_token);
     if(!user) return res.status(401).send({success: false, message:"Not Authorized"});
     req.user=user;
+    console.log(user)
 
     next();
 };

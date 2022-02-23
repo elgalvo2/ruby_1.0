@@ -39,11 +39,13 @@ const userSchema_conservacion = Schema({
     versionKey: false,
 })
 
+userSchema_conservacion.statics.getAccounts = getAccounts;
 userSchema_conservacion.statics.buildUp = buildUp;
 userSchema_conservacion.statics.signup = signup;
 userSchema_conservacion.statics.login = login;
 userSchema_conservacion.statics.findUserById = findUserById;
 userSchema_conservacion.statics.getTechnicians = getTechnicians;
+userSchema_conservacion.statics.deleteAccount = deleteAccount;
 
 mongoose.model('user_conservacion',userSchema_conservacion,'users_conservacion');
 
@@ -126,7 +128,7 @@ function login(matricula,password){
 }
 
 function findUserById({_id}){
-    return this.findOne(_id)
+    return this.findOne({_id})
         .then(user=>{
             if(!user) throw new Error('Usuario no encontrado');
 
@@ -138,4 +140,12 @@ function findUserById({_id}){
                 role:user.role,
             }
         })
+}
+
+function getAccounts(){
+    return this.find({role:{$nin:['SUDO','ADMIN']}})
+}
+
+function deleteAccount(_id){
+    return this.deleteOne({_id});
 }

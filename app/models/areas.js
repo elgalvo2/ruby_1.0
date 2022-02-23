@@ -98,6 +98,7 @@ function getAreaById(_id) {
 function updateArea(area_info) {
 
     if (Object.keys(area_info).length == 0) throw new Error('No se ha especificado campos a actualizar');
+    if(area_info.name) throw new Error('El nombre del area no puede ser cambiado')
     if (!area_info._id || area_info._id == '') throw new Error('Especifique el area a actualizar');
     const update = { ...area_info };
     return this.findOne({ _id: area_info._id })

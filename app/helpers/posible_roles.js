@@ -1,6 +1,6 @@
 function isValidRole(role){
     let roles = [
-        'TECNICO','SUDO','ADMIN',''
+        'TECNICO','SUDO','ADMIN','OPERADOR',
     ]
     return (roles.includes(role))
     

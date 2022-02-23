@@ -10,7 +10,7 @@ const TaskSchema_v2 = Schema({
     creador_id:{  // creador del task
         type:Schema.Types.ObjectId,
         ref:'user_conservacion',
-        required:true,
+        // required:true,
     },
 
     created_date:{type:String, required: true},
@@ -33,6 +33,8 @@ TaskSchema_v2.statics.getTasksByCreator = getTasksByCreator;
 TaskSchema_v2.statics.getTasksByArea = getTasksByArea;
 TaskSchema_v2.statics.getAll = getAll;
 TaskSchema_v2.statics.getCurrentTask = getCurrentTask;
+TaskSchema_v2.statics.getCurrentTaskByAreaId = getCurrentTaskByAreaId;
+
 //TaskSchema_v2.statics.getTodayTasks = getTodayTasks;
 // TaskSchema_v2.statics.updateTask = updateTask;
 // TaskSchema_v2.statics.deleteTask = deleteTask;
@@ -42,8 +44,8 @@ model('task_v2',TaskSchema_v2, 'tasks_v2');
 
 
 
-function create_task(taskInfo, creador_id, area_id){
-    if(!creador_id || creador_id=='') throw new Error('Creator id is required')
+function create_task(taskInfo, area_id){
+    // if(!creador_id || creador_id=='') throw new Error('Creator id is required')
     if(!area_id || area_id=='') throw new Error('Area id is required');
     if(!taskInfo.description || taskInfo.description == '') throw new Error('description is required');
     
@@ -58,7 +60,7 @@ function create_task(taskInfo, creador_id, area_id){
     let newDate = day+'/'+month+'/'+year;
     let newHour = hour+':'+minute;
     
-    taskInfo.creador_id = creador_id;
+    
     taskInfo.area_id = area_id;
     taskInfo.created_date = newDate; 
     taskInfo.created_hour = newHour; 
@@ -71,7 +73,7 @@ function create_task(taskInfo, creador_id, area_id){
         const counter = tasks.length+1
         
         const newTask = {
-            creador_id: taskInfo.creador_id,
+            
             area_id:taskInfo.area_id,
             folio: taskInfo.folio+'-'+counter.toString(),
             created_date: taskInfo.created_date,
@@ -100,6 +102,10 @@ function getAll(){
 
 function getCurrentTask(){
     return this.find({done: false});
+}
+
+function getCurrentTaskByAreaId(area_id){
+    return this.find({area_id,done:false})
 }
 
 function getTodayTasks(){
