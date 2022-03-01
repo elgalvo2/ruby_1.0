@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        h1{color:red}
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Sensores y actuadores Biomedicos</h1>
+    <h2>Proyecto geniometro</h2>
+    <p>
+        La practica consiste en el desarrollo de un goniómetro digital en equipo de 4 integrantes, utilizando Arduino y potenciómetro para adquirir los grados de movimiento. Para el muestro de los ángulos se deberá imprimir en el monitor serial o bien se puede agregar una pantalla LCD, oled o enviar vía bluetooth a un móvil o computadora.  Se revisara la funcionalidad del circuito, su reporte y preguntas acerca de la practica. 
+    </p>
+    <div class='layout'>
+        <div>
+            <p>Los grados introducidos son:<span> 0.00</span>°</p>
+            
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
+</body>
+
+</html>

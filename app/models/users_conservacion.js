@@ -46,6 +46,8 @@ userSchema_conservacion.statics.login = login;
 userSchema_conservacion.statics.findUserById = findUserById;
 userSchema_conservacion.statics.getTechnicians = getTechnicians;
 userSchema_conservacion.statics.deleteAccount = deleteAccount;
+userSchema_conservacion.statics.getOperators = getOperators;
+
 
 mongoose.model('user_conservacion',userSchema_conservacion,'users_conservacion');
 
@@ -70,6 +72,11 @@ function buildUp(){
 
 function getTechnicians(){
     return this.find({role:"TECNICO"}).select({_id:0,matricula:1,firstName:1,lastName:1})
+}
+
+
+function getOperators(){
+    return this.find({role:"OPERADOR"}).select({_id:0,matricula:1,firstName:1,lastName:1})
 }
 
 function signup(userInfo){

@@ -4,7 +4,7 @@
   "description": "\"Back end proyecto conservacion\"",
   "main": "app.js",
   "scripts": {
-    "test": "test",
+    "test": "cross-env ENV=test jest --silent --watch",
     "dev": "cross-env ENV=development OP=windows nodemon",
     "production": "cross-env ENV=production OP=linux node app.js",
     "testingEc2": "cross-env ENV=development OP=linux nodemon"

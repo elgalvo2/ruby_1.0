@@ -10,29 +10,30 @@ const AreaSchema = getModelByName('area')
 // auo controllers------------*
 const setTask = (req, res) => {
     const { creator_id } = req.body
-    try{
+    try {
         AreaSchema.getAreasByOperatorId(creator_id)
-        .then((data)=>{
-            
-            if(data.length==0) throw new Error('no hay area asigandas a este operador')
-            console.log('area info:',data)
-            const {_id} = data[0];
-            
-            return _id
-        }).then((area_id)=>{
-            
-            TaskSchema.create_task(req.body,area_id)
-            .then((data)=>{
-                console.log('task info:',data)
-                res.status(200).send({data:data,success:true})
-            }).catch((err)=>{
-                res.status(200).send({error:err.message, success:false})
+            .then((data) => {
+
+                if (data.length == 0) throw new Error('no hay area asigandas a este operador')
+                console.log('area info:', data)
+                const { _id } = data[0];
+
+                return _id
+            }).then((area_id) => {
+
+                TaskSchema.create_task(req.body, area_id)
+                    .then((data) => {
+                        console.log('task info:', data)
+                        res.status(200).send({ data: data, success: true })
+                    }).catch((err) => {
+                        res.status(200).send({ error: err.message, success: false })
+                    })
+            }).catch((err) => {
+                res.status(200).send({ error: err.message, success: false })
             })
-        }).catch((err)=>{
-            res.status(200).send({error:err.message, success:false})
-        })
-    }catch(err){
-        res.status(500).send({error:err.message,success:false})
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ error: err.message, success: false })
     }
 
     // try {
@@ -47,29 +48,44 @@ const setTask = (req, res) => {
     // }
 }
 
+const deleteTask = (req, res) => {
+    const { id } = req.params
+    try {
+        TaskSchema.deleteTask(id)
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err.message, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
+    }
+
+}
+
 
 const getByCreator = (req, res) => {
-    const {id} = req.params;
-    try{
+    const { id } = req.params;
+    try {
         AreaSchema.getAreasByOperatorId(id)
-        .then((data)=>{
-            if(data.length==0) throw new Error('no hay area asigandas a este operador')
-            console.log('area info:',data)
-            const {_id} = data[0];
-            return _id
-        }).then((area_id)=>{
-            TaskSchema.getTasksByArea(area_id)
-            .then((data)=>{
-                res.status(200).send({data:data,success:true})
-            }).catch((err)=>{
-                res.status(200).send({ error: err.message, success:false })
+            .then((data) => {
+                if (data.length == 0) throw new Error('no hay area asigandas a este operador')
+                console.log('area info:', data)
+                const { _id } = data[0];
+                return _id
+            }).then((area_id) => {
+                TaskSchema.getTasksByArea(area_id)
+                    .then((data) => {
+                        res.status(200).send({ data: data, success: true })
+                    }).catch((err) => {
+                        res.status(200).send({ error: err.message, success: false })
+                    })
             })
-        })
-        .catch((err)=>{
-            res.status(200).send({ error: err.message, success:false })
-        })
-    }catch(err){
-        res.status(500).send({error:err, success:false })    
+            .catch((err) => {
+                res.status(200).send({ error: err.message, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
     }
 }
 
@@ -103,45 +119,59 @@ const getByCreator = (req, res) => {
 // }
 
 
-const getByArea = (req,res)=>{
-    const {id} = req.params;
-    try{
+const getByArea = (req, res) => {
+    const { id } = req.params;
+    try {
         TaskSchema.getTasksByArea(id)
-        .then((data)=>{
-            res.status(200).send({ data: data, success:true })
-        }).catch((err)=>{
-            res.status(200).send({ error: err, success:false })
-        })
-    }catch(err){
-        res.status(500).send({error:err, success:false })    
-    } 
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
+    }
 }
 
-const getTasks = (req,res)=>{
-    try{
+const getTasks = (req, res) => {
+    try {
         TaskSchema.getAll()
-        .then((data)=>{
-            res.status(200).send({ data: data, success:true })
-        }).catch((err)=>{
-            res.status(200).send({ error: err, success:false })
-        })
-    }catch(err){
-        res.status(500).send({error:err, success:false })    
-    } 
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
+    }
 }
 
-const getCurrentTask = (req,res)=>{
-    try{
+const getCurrentTask = (req, res) => {
+    try {
         TaskSchema.getCurrentTask()
-        .then((data)=>{
-            res.status(200).send({ data: data, success:true })
-        }).catch((err)=>{
-            res.status(200).send({ error: err, success:false })
-        })
-    }catch(err){
-        res.status(500).send({error:err, success:false })    
-    } 
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
+    }
+}
+
+const markAsDone = (req, res) => {
+    const { id } = req.params
+    try {
+        TaskSchema.markAsDone(id)
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err, success: false })
+    }
 }
 
 
-module.exports = { setTask, getByCreator ,getByArea, getTasks, getCurrentTask};
+module.exports = { setTask, getByCreator, getByArea, getTasks, getCurrentTask, markAsDone, deleteTask };

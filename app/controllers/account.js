@@ -117,5 +117,19 @@ const deleteAccount = (req, res) => {
 
 }
 
+const getOperators = (req,res)=>{
+    const User = getModelByName('user_conservacion')
+    try {
+        User.getOperators()
+            .then((data) => {
+                console.log(data);
+                res.status(200).send({ success: true, data: data });
+            }).catch((err) => {
+                res.status(200).send({ success: false, error: err.message });
+            })
+    } catch (err) {
+        res.status(500).send({ success: false, error: err.message });
+    }
+}
 
-module.exports = { signup, login, current_user, getTechnicians, getAccounts, deleteAccount };
+module.exports = { signup, login, current_user, getTechnicians, getAccounts, deleteAccount , getOperators};

@@ -1,23 +1,35 @@
-
-const app = require('../app')
+require('jest')
+const { app, server } = require('../app')
 const request = require('supertest')
+const api = request(app)
+const mongoose = require('mongoose')
+
+const task_v2_routes = {
+    create: 'create',
+    getByCreator: 'getByCreator',
+    getByArea: 'getByArea',
+    all: '',
+    current: 'curreny',
+    maskAsDone: 'markAsDone',
+    delete: '/'
+}
 
 
-describe('post /create', ()=>{
-
-    test('sould response with a status 500 if empty', async()=>{
-        const response = await request(app).post('/api/1.0/task_v2/create').send();
-        expect(response.statusCode).toBe(500);
+describe('test on taskV2 get all route', () => {
+    test('taskv2 return json', async () => {
+        await api
+            .get(`/api/1.0/task_v2/${task_v2_routes.all}`)
+            .expect(200)
     })
 
-    test('should response with a body "data":"hola"', async ()=>{
-        const response = await request(app).post('/api/1.0/task_v2/create').send();
-        expect(response.body).toBeInstanceOf(Object)
+    test('return tasks', async () => {
+        const response = await api.get(`/api/1.0/task_v2/${task_v2_routes.all}`)
+        expect(response.body.success).toBe(true)
     })
 
-    // test('controller should return status 500 if request body is empty', async () => { 
-    //     const response = await request(app).post('/api/1.0/task_v2/create').send(JSON.stringify(mockReq));
-    //     expect(response.statusCode).toBe(200);
-    
-    // })
+    afterAll(() => {
+        mongoose.connection.close()
+        server.close()
+    })
 })
+

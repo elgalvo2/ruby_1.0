@@ -12,7 +12,7 @@ const removeExtension = (fileName) => {
 
 fs.readdirSync(pathRouther).filter((file) => {
     const fileWithOutExt = removeExtension(file);
-    const skip = ['index'].includes(fileWithOutExt);
+    const skip = ['index','esp_3266_files'].includes(fileWithOutExt);
     if (!skip) {
         if (fileWithOutExt == 'pdf_generator_linux' && process.env.OP == 'linux') {
             router.use(`/pdf_generator`, require(`./${fileWithOutExt}`));

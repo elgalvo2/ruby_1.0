@@ -34,11 +34,11 @@ TaskSchema_v2.statics.getTasksByArea = getTasksByArea;
 TaskSchema_v2.statics.getAll = getAll;
 TaskSchema_v2.statics.getCurrentTask = getCurrentTask;
 TaskSchema_v2.statics.getCurrentTaskByAreaId = getCurrentTaskByAreaId;
+TaskSchema_v2.statics.markAsDone = markAsDone;
+TaskSchema_v2.statics.deleteTask = deleteTask;
 
 //TaskSchema_v2.statics.getTodayTasks = getTodayTasks;
 // TaskSchema_v2.statics.updateTask = updateTask;
-// TaskSchema_v2.statics.deleteTask = deleteTask;
-// TaskSchema_v2.statics.markDone = markDone;
 
 model('task_v2',TaskSchema_v2, 'tasks_v2');
 
@@ -51,7 +51,7 @@ function create_task(taskInfo, area_id){
     
     let dateobj = new Date();
     var month = dateobj.getUTCMonth()+1;
-    var day = dateobj.getUTCDate()-1;
+    var day = dateobj.getUTCDate();
     var year = dateobj.getUTCFullYear();
     
     var hour = dateobj.getHours();
@@ -141,8 +141,8 @@ function updateTask(taskInfo, _id, ){
         
     });
 }
-function markDone(taskFolio){
-    if(!taskFolio) throw new Error('Folio is required');
+function markAsDone(_id){
+    if(!_id) throw new Error('task id is required is required');
     let dateobj = new Date();
     var month = dateobj.getUTCMonth()+1;
     var day = dateobj.getUTCDate()-1;
@@ -152,7 +152,7 @@ function markDone(taskFolio){
     update.done_date = day+'/'+month+'/'+year;
     update.done = true;
 
-    return this.findOne({folio:taskFolio})
+    return this.findOne({_id})
     .then((task)=>{
         if(!task) throw new Error('Task cannot mark as done');
         if(task.done == true) throw new Error('Task already done');
@@ -163,6 +163,6 @@ function markDone(taskFolio){
     });
 }
 
-function deleteTask(folio){
-    return this.deleteOne({folio});
+function deleteTask(_id){
+    return this.deleteOne({_id});
 }

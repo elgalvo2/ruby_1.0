@@ -11,6 +11,8 @@ const {dbConnect} = require('./config/mongo');
 
 if(process.env.ENV=='development'){
     PORT = process.env.TESTING_PORT|| 5000;
+}else if(process.env.ENV =='test'){
+    PORT = process.env.TESTPORT || 3000;
 }else{
     PORT = process.env.PORT || 8000;
 }
@@ -27,9 +29,9 @@ dbConnect();
 
 
 
-app.listen(PORT,()=>{
+const server = app.listen(PORT,()=>{
     console.log("API escuchando en el puerto", PORT);
 })
 
-module.exports = app;
+module.exports = {app,server};
 
