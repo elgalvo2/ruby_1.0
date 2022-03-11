@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { setTask, getByCreator, getByArea, getTasks, getCurrentTask, getByTechnician, markAsDone,deleteTask } = require('../controllers/tasks_v2');
+const { setTask, getByCreator, getByArea, getTasks, getCurrentTask, getByTechnician, markAsDone,deleteTask,setTask_v2 } = require('../controllers/tasks_v2');
 const { isAuthenticated } = require('../middleware');
 
 
-router.post('/create', setTask) // ruta probada
+router.post('/create', setTask_v2) // ruta probada
 router.get('/getByCreator/:id', getByCreator) // ruta probada
 router.get('/getByArea/:id', getByArea) // ruta probada
 router.get('/', getTasks) // ruta probada

@@ -36,6 +36,8 @@ TaskSchema_v2.statics.getCurrentTask = getCurrentTask;
 TaskSchema_v2.statics.getCurrentTaskByAreaId = getCurrentTaskByAreaId;
 TaskSchema_v2.statics.markAsDone = markAsDone;
 TaskSchema_v2.statics.deleteTask = deleteTask;
+TaskSchema_v2.statics.getTaskByAreaIdArray = getTaskByAreaIdArray;
+
 
 //TaskSchema_v2.statics.getTodayTasks = getTodayTasks;
 // TaskSchema_v2.statics.updateTask = updateTask;
@@ -94,6 +96,12 @@ function getTasksByCreator(_id){
 function getTasksByArea(_id){
     if(!_id || _id=='') throw new Error('especifica el area')
     return this.find({area_id:_id})
+}
+
+function getTaskByAreaIdArray(query){    
+    if(!query)throw new Error('Debe proveer areas')
+    if(query.length ==0) query.push({})
+    return this.find({$or:query})
 }
 
 function getAll(){

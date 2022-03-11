@@ -47,6 +47,7 @@ userSchema_conservacion.statics.findUserById = findUserById;
 userSchema_conservacion.statics.getTechnicians = getTechnicians;
 userSchema_conservacion.statics.deleteAccount = deleteAccount;
 userSchema_conservacion.statics.getOperators = getOperators;
+userSchema_conservacion.statics.findUsersByIdArray = findUsersByIdArray;
 
 
 mongoose.model('user_conservacion',userSchema_conservacion,'users_conservacion');
@@ -71,12 +72,12 @@ function buildUp(){
 
 
 function getTechnicians(){
-    return this.find({role:"TECNICO"}).select({_id:0,matricula:1,firstName:1,lastName:1})
+    return this.find({role:"TECNICO"}).select({_id:1,matricula:1,firstName:1,lastName:1})
 }
 
 
 function getOperators(){
-    return this.find({role:"OPERADOR"}).select({_id:0,matricula:1,firstName:1,lastName:1})
+    return this.find({role:"OPERADOR"}).select({_id:1,matricula:1,firstName:1,lastName:1})
 }
 
 function signup(userInfo){
@@ -135,6 +136,7 @@ function login(matricula,password){
 }
 
 function findUserById({_id}){
+    console.log(_id)
     return this.findOne({_id})
         .then(user=>{
             if(!user) throw new Error('Usuario no encontrado');
@@ -147,6 +149,11 @@ function findUserById({_id}){
                 role:user.role,
             }
         })
+}
+
+function findUsersByIdArray(query){
+    if(!query) throw new Error('Debe de proveerse un arreglo de ids')
+    return this.find({$or:query})
 }
 
 function getAccounts(){

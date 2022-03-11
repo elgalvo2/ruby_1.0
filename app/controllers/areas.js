@@ -3,15 +3,18 @@ const getModelByName = require('../models/getModelByName');
 const AreaSchema = getModelByName('area')
 
 const setArea = (req, res) => {
-    
+    console.log(req.body)
     try {
         AreaSchema.setArea(req.body)
             .then((data) => {
+                console.log('data en controlodaor areaschema set area .then: ',data)
                 res.status(200).send({ data: data, success: true })
             }).catch((err) => {
+                console.log('data en catcherrro areaschema set area: ',err)
                 res.status(200).send({error : err.message, success: false })
             })
     } catch (err) {
+        console.log(err)
         res.status(500).send({error : err.message, success: false })
     }
 }
