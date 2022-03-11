@@ -16,7 +16,7 @@ const {
 
 async function order_data_topdf(unit_data, provider_data, order_data) {
 
-    console.log(process.env.OP)
+     
 
 
     const browser = await puppeteer.launch({
