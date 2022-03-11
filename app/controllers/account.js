@@ -1,22 +1,44 @@
+const { attachment } = require('express/lib/response');
+const { Query } = require('mongoose');
+const { connectToBrowser } = require('puppeteer');
 const getModelByName = require('../models/getModelByName');
+const UserModel = getModelByName('user_conservacion');
+const AreaSchema = getModelByName('area')
+const NeedModel = getModelByName('need');
+const PropertyModel = getModelByName('property');
+const ProviderModel = getModelByName('provider');
+const TaskSchema = getModelByName('task_v2');
 
 
-const signup = (req,res)=>{
-    if(!req.body.user){
+const getAccounts = (req, res) => {
+    try {
+        UserModel.getAccounts()
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.status(200).send({ error: err.message, success: false })
+            })
+    } catch (err) {
+        res.status(500).send({ error: err.message, success: false })
+    }
+}
+
+
+const signup = (req, res) => {
+    if (!req.body.user) {
         return res.status(200).send({
-            success: false, 
-            error:'user not fund'
+            success: false,
+            error: 'user not fund'
         })
     }
 
-    const UserModel = getModelByName('user_conservacion');
 
-    try{
+    try {
         UserModel.signup(req.body.user)
-        .then(()=>{
-            res.status(200).send({success:true, message:'usuario creado correctamente'})
-        })
-        .catch(error=>res.status(200).send({success:false , message: error.message}))
+            .then((data) => {
+                res.status(200).send({ success: true, data: data})
+            })
+            .catch(error => res.status(200).send({ success: false, error: error.message }))
         /*
         const {email, password, firstName, lastName} = req.body;
         const signedUp = await UserModel.create({
@@ -24,24 +46,22 @@ const signup = (req,res)=>{
         });
         res.status(200).send({success:true, message:'user created succesfully', data:signedUp});
         */
-    }catch(err){
-        res.status(500).send({success:false, error:err.message});
+    } catch (err) {
+        res.status(500).send({ success: false, error: err.message });
     }
 };
 
-const getTechnicians = (req,res)=>{
-    const UserModel = getModelByName('user_conservacion');
+const getTechnicians = (req, res) => {
 
-    try{
+    try {
         UserModel.getTechnicians()
-        .then((data)=>{
-            console.log(data);
-            res.status(200).send({success:true,data:data});
-        }).catch((err)=>{
-            res.status(200).send({success:false,error:err.message});
-        })
-    }catch(err){
-        res.status(500).send({success:false, error:err.message});
+            .then((data) => {
+                res.status(200).send({ success: true, data: data });
+            }).catch((err) => {
+                res.status(200).send({ success: false, error: err.message });
+            })
+    } catch (err) {
+        res.status(500).send({ success: false, error: err.message });
     }
 }
 
@@ -58,32 +78,153 @@ const getTechnicians = (req,res)=>{
     }
 };*/
 
-const login =  (req,res)=>{
-    if(!req.body.matricula) return res.status(200).send({success:false,error:"Matricula not provided"});
-    if(!req.body.password) return res.status(200).send({success:false, error:"Password not provided"});
+const login = async (req, res) => {
+    if (!req.body.matricula) return res.status(200).send({ success: false, error: "Matricula not provided" });
+    if (!req.body.password) return res.status(200).send({ success: false, error: "Password not provided" });
 
-    const User = getModelByName('user_conservacion');
+    let context = {}
+    let role 
+
+
+    // try {
+    //     UserModel.login(req.body.matricula, req.body.password)
+    //         .then(data => {
+    //             res.status(200).send({ success: true, data, context });
+    //         }).catch(err => res.status(200).send({ success: false, error: err.message }));
+    // } catch (err) {
+    //     res.status(200).send({ success: false, error: err.message });
+    // }
 
     try{
-        User.login(req.body.matricula, req.body.password)
-            .then(data=>{
-                res.status(200).send({success:true, data});
-            }).catch(err=>res.status(200).send({success:false,error:err.message}));
+        const data = await UserModel.login(req.body.matricula, req.body.password);
+        if(data.user_.role == 'ADMIN' || data.user_.role == 'SUDO' || data.user_._id){
+            const operators = await UserModel.getOperators()
+            const technicians = await UserModel.getTechnicians()
+            const areas = await AreaSchema.getAreas()
+            const needs = await NeedModel.getneeds()
+            const properties = await PropertyModel.getProperties()
+            const providers = await ProviderModel.getProviders()
+            const tasks = await TaskSchema.getAll()
+
+            context={
+                operators,
+                technicians,
+                areas,
+                needs,
+                properties,
+                providers,
+                tasks
+            }
+
+            
+        }
+        if(data.user_.role == 'TECNICO'){
+            const areas = await AreaSchema.getAreasByTechnicianId(data.user_._id)
+            let query ={}
+            query.areas = areas.map((area)=>{
+                return  {_id:area._id}
+            })
+            query.operators = areas.map((area)=>{
+                return  {_id:area.operator_id}
+            })
+            console.log('areas array in account controller', query.areas)
+            const tasks = await TaskSchema.getTaskByAreaIdArray(query.areas)
+            const operators = await UserModel.findUsersByIdArray(query.operators)
+
+            context ={
+                areas,
+                operators,
+                tasks
+            }
+        }
+        if(data.user_.role=='OPERADOR'){
+            const areas = await AreaSchema.getAreasByOperatorId(data.user_._id)
+            let query ={}
+            var technicians = []
+            var task = []
+            query.areas = areas.map((area)=>{
+                return  {area_id:area._id}
+            })
+            query.technician = areas.map((area)=>{
+                return  {_id:area.technician_id}
+            })
+            
+
+            if(query.areas.length==0 || query.areas === undefined){
+                tasks = []
+            }else{
+                tasks = await TaskSchema.getTaskByAreaIdArray(query.areas)    
+            }
+
+            if(query.technician.length==0 ||query.technician=== undefined){
+                technicians = []
+            }else{
+                technicians = await UserModel.findUsersByIdArray(query.areas)    
+            }
+
+            // const tasks = await TaskSchema.getTaskByAreaIdArray(query.areas) -----> es necesario resolver pporblemas de compatibilidad con arrays new objetd id para consulta or
+            
+
+            context ={
+                areas,
+                technicians,
+                tasks
+            }
+            console.log(context)
+        }
+
+
+
+        res.status(200).send({success:true, data, context})
     }catch(err){
-        res.status(200).send({success:false,error:err.message});
+        res.status(200).send({ success: false, error: err.message });
+    }
+
+
+}
+
+
+
+
+const current_user = (req, res) => {
+    if (!req.body.email) return res.status(200).send({ success: false, data: { user: null } });
+
+    return UserModel.findUserById(req.user._id)
+        .then(user => {
+            res.status(200).send({ success: true, data: { user } });
+        }).catch(err => res.status(200).send({ success: false, error: err.message }));
+};
+
+const deleteAccount = (req, res) => {
+    const { id } = req.params
+    try {
+        
+        UserModel.deleteAccount(id)
+            .then((data) => {
+                res.status(200).send({ data: data, success: true })
+            }).catch((err) => {
+                res.tatus(200).send({ error: err.message, success: false })
+            })
+
+    } catch (err) {
+        res.tatus(500).send({ error: err.message, success: false })
+    }
+
+}
+
+const getOperators = (req,res)=>{
+    
+    try {
+        UserModel.getOperators()
+            .then((data) => {
+                
+                res.status(200).send({ success: true, data: data });
+            }).catch((err) => {
+                res.status(200).send({ success: false, error: err.message });
+            })
+    } catch (err) {
+        res.status(500).send({ success: false, error: err.message });
     }
 }
 
-const current_user = (req,res)=>{
-    if(!req.body.email) return res.status(200).send({success:false, data:{user:null}});
-
-    const User = getModelByName('user_conservacion');
-
-    return User.findUserById(req.user._id)
-        .then(user=>{
-            res.status(200).send({success:true,data:{user}});
-        }).catch(err=>res.status(200).send({success:false,error:err.message}));
-}; 
-
-
-module.exports = {signup, login, current_user,getTechnicians};
+module.exports = { signup, login, current_user, getTechnicians, getAccounts, deleteAccount , getOperators};

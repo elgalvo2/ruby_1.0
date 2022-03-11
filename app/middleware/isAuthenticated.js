@@ -8,6 +8,7 @@ function isAuthenticated(req, res,next){
     const user = verifyAuthToken(access_token);
     if(!user) return res.status(401).send({success: false, message:"Not Authorized"});
     req.user=user;
+    
 
     next();
 };
@@ -17,7 +18,7 @@ function verifyAuthToken(token){
     try{
         user = jwt.verify(token, process.env.TOKEN_SECRET);
     }catch(err){
-        console.log(err)
+        return res.status(401).send({success: false, message:"An error ocurred"});
     }
 
     return user;

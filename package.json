@@ -4,7 +4,7 @@
   "description": "\"Back end proyecto conservacion\"",
   "main": "app.js",
   "scripts": {
-    "test": "test",
+    "test": "cross-env ENV=test jest --silent --watch",
     "dev": "cross-env ENV=development OP=windows nodemon",
     "production": "cross-env ENV=production OP=linux node app.js",
     "testingEc2": "cross-env ENV=development OP=linux nodemon"
@@ -32,11 +32,19 @@
     "multer": "^1.4.3",
     "nodemailer": "^6.6.5",
     "pdf-merger-js": "^3.2.1",
+<<<<<<< HEAD
     "puppeteer": "^13.3.2",
     "react-redux": "^7.2.5"
+=======
+    "puppeteer": "^12.0.1",
+    "react-redux": "^7.2.5",
+    "socket.io": "^4.4.1"
+>>>>>>> 1db03bfd5dc27fa55ca1b7400627ad864ef9b366
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.13"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.2.2"
   }
 }
